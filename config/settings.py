@@ -1,5 +1,6 @@
 from decouple import config
 from datetime import timedelta
+from stocks.schedules import CELERYBEAT_SCHEDULE
 
 """
 Django settings for config project.
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
     'transactions',
     'users',
     'stocks',
+    'django_celery_beat',
     'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -146,3 +148,9 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = 'Asia/Karachi'
+CELERY_BEAT_SCHEDULE = CELERYBEAT_SCHEDULE
