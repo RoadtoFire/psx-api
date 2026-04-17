@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'stocks',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -128,3 +129,5 @@ REST_FRAMEWORK = {
 
 # CORS - allow all for development
 CORS_ALLOW_ALL_ORIGINS = DEBUG
+
+AUTH_USER_MODEL = 'users.User'

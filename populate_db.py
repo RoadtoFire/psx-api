@@ -1,14 +1,11 @@
 import os
 import django
-from dividend_scraper import fetch_dividends, parse_dividend
-from stocks.models import Stock, DailyPrice, Index, IndexDailyPrice, Dividend, PurificationRatio
-from purification_parser import parse_purification_pdf
-
-# Setup Django environment before importing models
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
-from stocks.models import Stock, DailyPrice
+from dividend_scraper import fetch_dividends, parse_dividend
+from stocks.models import Stock, DailyPrice, Index, IndexDailyPrice, Dividend, PurificationRatio
+from purification_parser import parse_purification_pdf
 from scraper import fetch_shariah_symbols, fetch_all_symbols, fetch_eod_prices, parse_eod_row
 
 
@@ -236,3 +233,8 @@ if __name__ == "__main__":
 
     print("\n=== Step 4: Populate Dividends ===")
     populate_dividends()
+
+    print("\n=== Step 5: Populate Purification Ratios ===")
+    populate_purification('SinceDec25.pdf', 'H1-2025', '2025-12-02', source_document='KMI Recomp H1-2025 (Dec 2025)')
+    populate_purification('Recomp2Jun25.pdf', 'H2-2024', '2025-06-10', '2025-12-01', source_document='KMI Recomp H2-2024 (Jun 2025)')
+    populate_purification('RecompDec24.pdf', 'H1-2024', '2025-01-03', '2025-06-09', source_document='KMI Recomp H1-2024 (Dec 2024)')

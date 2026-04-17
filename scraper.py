@@ -5,7 +5,7 @@ from datetime import datetime
 
 SYMBOLS_URL = "https://dps.psx.com.pk/symbols"
 EOD_URL = "https://dps.psx.com.pk/timeseries/eod/{symbol}"
-KMIALLSHR_URL = "https://dps.psx.com.pk/index/KMIALLSHR"
+KMIALLSHR_URL = "https://dps.psx.com.pk/indices/KMIALLSHR"
 SCSTRADE_DIVIDENDS_URL = "https://www.scstrade.com/MarketStatistics/MS_xDates.aspx/chartact"
 
 HEADERS = {
