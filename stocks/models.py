@@ -7,6 +7,7 @@ class Stock(models.Model):
     sector = models.CharField(max_length=50, blank=True)
     is_active = models.BooleanField(default=True)
     removed_date = models.DateField(null=True, blank=True)
+    tv_logo_id = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         ordering = ['symbol']

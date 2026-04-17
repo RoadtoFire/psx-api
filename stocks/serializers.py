@@ -27,7 +27,7 @@ class StockListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Stock
-        fields = ['symbol', 'name', 'sector', 'latest_price', 'latest_close']
+        fields = ['symbol', 'name', 'sector', 'is_active', 'tv_logo_id', 'latest_price', 'latest_close']
 
     def get_latest_price(self, obj):
         price = obj.prices.first()
