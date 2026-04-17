@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users',
     'stocks',
     'django_celery_beat',
+    'drf_spectacular',
     'rest_framework_simplejwt',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,6 +137,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # CORS - allow all for development
