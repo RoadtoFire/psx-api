@@ -84,3 +84,71 @@ def calculate_dividend_income(portfolio, tax_rate):
         })
 
     return results
+
+
+def calculate_portfolio_value(portfolio):
+    """
+    Calculate current portfolio value and returns.
+    Returns holdings with current value, cost basis, and P&L.
+    """
+    from stocks.models import DailyPrice
+    from datetime import date
+
+    today = date.today()
+    holdings = get_holdings_on_date(portfolio, today)
+
+    results = []
+    total_current_value = Decimal('0')
+    total_cost_basis = Decimal('0')
+
+    for stock, shares in holdings.items():
+        # Get latest price
+        latest_price = DailyPrice.objects.filter(
+            stock=stock
+        ).order_by('-date').first()
+
+        if not latest_price:
+            continue
+
+        # Get average buy price for this stock
+        buy_transactions = portfolio.transactions.filter(
+            stock=stock,
+            transaction_type='buy'
+        )
+        total_spent = sum(t.shares * t.price_per_share for t in buy_transactions)
+        total_bought = sum(t.shares for t in buy_transactions)
+        avg_buy_price = total_spent / total_bought if total_bought else Decimal('0')
+
+        current_value = shares * latest_price.close
+        cost_basis = shares * avg_buy_price
+        pnl = current_value - cost_basis
+        pnl_pct = (pnl / cost_basis * 100) if cost_basis else Decimal('0')
+
+        total_current_value += current_value
+        total_cost_basis += cost_basis
+
+        results.append({
+            'stock': stock.symbol,
+            'stock_name': stock.name,
+            'shares': float(shares),
+            'avg_buy_price': round(float(avg_buy_price), 2),
+            'current_price': float(latest_price.close),
+            'price_date': str(latest_price.date),
+            'current_value': round(float(current_value), 2),
+            'cost_basis': round(float(cost_basis), 2),
+            'pnl': round(float(pnl), 2),
+            'pnl_pct': round(float(pnl_pct), 2),
+        })
+
+    total_pnl = total_current_value - total_cost_basis
+    total_pnl_pct = (total_pnl / total_cost_basis * 100) if total_cost_basis else Decimal('0')
+
+    return {
+        'summary': {
+            'total_current_value': round(float(total_current_value), 2),
+            'total_cost_basis': round(float(total_cost_basis), 2),
+            'total_pnl': round(float(total_pnl), 2),
+            'total_pnl_pct': round(float(total_pnl_pct), 2),
+        },
+        'holdings': results
+    }

@@ -2,8 +2,10 @@ from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from .models import Portfolio, Transaction
 from .serializers import PortfolioSerializer, TransactionSerializer
-from .calculators import calculate_dividend_income
+from .calculators import calculate_dividend_income, calculate_portfolio_value
 from rest_framework.views import APIView
+
+
 
 
 class PortfolioView(generics.RetrieveAPIView):
@@ -71,3 +73,14 @@ class DividendIncomeView(APIView):
             },
             'dividends': results
         })
+    
+class PortfolioValueView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        portfolio, _ = Portfolio.objects.get_or_create(
+            user=request.user,
+            defaults={'name': 'My Portfolio'}
+        )
+        data = calculate_portfolio_value(portfolio)
+        return Response(data)
