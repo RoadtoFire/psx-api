@@ -1,2 +1,0 @@
-[start]
-cmd = "gunicorn config.wsgi --log-file -"
