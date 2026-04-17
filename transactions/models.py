@@ -48,3 +48,16 @@ class Transaction(models.Model):
     @property
     def total_value(self):
         return self.shares * self.price_per_share
+    
+
+class PurificationRecord(models.Model):
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name='purification_records')
+    purified_up_to_date = models.DateField()
+    amount_purified = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-purified_up_to_date']
+
+    def __str__(self):
+        return f"{self.portfolio.user.email} - purified up to {self.purified_up_to_date}"

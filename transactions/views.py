@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
-from .models import Portfolio, Transaction
+from .models import Portfolio, Transaction, PurificationRecord
 from .serializers import PortfolioSerializer, TransactionSerializer
 from .calculators import calculate_dividend_income, calculate_portfolio_value
 from rest_framework.views import APIView
@@ -84,3 +84,54 @@ class PortfolioValueView(APIView):
         )
         data = calculate_portfolio_value(portfolio)
         return Response(data)
+    
+
+class MarkPurifiedView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        from datetime import date
+        from decimal import Decimal
+
+        portfolio, _ = Portfolio.objects.get_or_create(
+            user=request.user,
+            defaults={'name': 'My Portfolio'}
+        )
+
+        amount = request.data.get('amount', 0)
+        purified_up_to = request.data.get('purified_up_to', str(date.today()))
+
+        PurificationRecord.objects.create(
+            portfolio=portfolio,
+            purified_up_to_date=purified_up_to,
+            amount_purified=Decimal(str(amount))
+        )
+
+        return Response({'status': 'purified', 'amount': amount})
+
+
+class PurificationHistoryView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        portfolio, _ = Portfolio.objects.get_or_create(
+            user=request.user,
+            defaults={'name': 'My Portfolio'}
+        )
+
+        records = PurificationRecord.objects.filter(portfolio=portfolio)
+        total_purified = sum(r.amount_purified for r in records)
+        latest = records.first()
+
+        return Response({
+            'total_purified': float(total_purified),
+            'latest_purification_date': str(latest.purified_up_to_date) if latest else None,
+            'records': [
+                {
+                    'date': str(r.created_at.date()),
+                    'purified_up_to': str(r.purified_up_to_date),
+                    'amount': float(r.amount_purified)
+                }
+                for r in records
+            ]
+        })
