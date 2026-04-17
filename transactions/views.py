@@ -101,14 +101,19 @@ class MarkPurifiedView(APIView):
         amount = request.data.get('amount', 0)
         purified_up_to = request.data.get('purified_up_to', str(date.today()))
 
-        PurificationRecord.objects.create(
+        # Prevent duplicate records for same date
+        record, created = PurificationRecord.objects.get_or_create(
             portfolio=portfolio,
             purified_up_to_date=purified_up_to,
-            amount_purified=Decimal(str(amount))
+            defaults={'amount_purified': Decimal(str(amount))}
         )
 
-        return Response({'status': 'purified', 'amount': amount})
+        if not created:
+            # Update amount if already exists
+            record.amount_purified = Decimal(str(amount))
+            record.save()
 
+        return Response({'status': 'purified', 'amount': float(record.amount_purified)})
 
 class PurificationHistoryView(APIView):
     permission_classes = [permissions.IsAuthenticated]
