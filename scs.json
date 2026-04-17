@@ -1,0 +1,1804 @@
+{
+  "d": [
+    {
+      "company_code": "SYS",
+      "company_name": "Systems Ltd.",
+      "sector_name": "TECHNOLOGY \u0026 COMMUNICATION",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Apr 2026"
+    },
+    {
+      "company_code": "IGIHL",
+      "company_name": "IGI Holdings Ltd. Consolidated",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "55%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Apr 2026"
+    },
+    {
+      "company_code": "UBL",
+      "company_name": "United Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "160%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Apr 2026"
+    },
+    {
+      "company_code": "BWCL",
+      "company_name": "Bestway Cement Ltd",
+      "sector_name": "CEMENT",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Apr 2026"
+    },
+    {
+      "company_code": "SGF",
+      "company_name": "Service Global Footwear Ltd.",
+      "sector_name": "LEATHER \u0026 TANNERIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "PAKQATAR",
+      "company_name": "Pak Qatar Family Takaful Limited",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "PQGTL",
+      "company_name": "Pak Qatar General Takaful Limited",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "PAKRI",
+      "company_name": "Pakistan Reinsurance Co. Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "ABOT",
+      "company_name": "Abbott Laboratories (Pak) Ltd.       ",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "400%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "GLAXO",
+      "company_name": "Glaxosmithkline (Pak) Ltd.",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "120%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "HINOON",
+      "company_name": "Highnoon Laboratories Ltd.",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "500%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "PKGS",
+      "company_name": "Packages Ltd. Consolidated",
+      "sector_name": "PAPER, BOARD \u0026 PACKAGING",
+      "bm_dividend": "160%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "SRVI",
+      "company_name": "Service Industries Ltd.",
+      "sector_name": "LEATHER \u0026 TANNERIES",
+      "bm_dividend": "175%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "22 Apr 2026"
+    },
+    {
+      "company_code": "HALEON",
+      "company_name": "Haleon Pakistan Ltd.(Formerly GSKCH Pak Ltd)",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "150%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "21 Apr 2026"
+    },
+    {
+      "company_code": "CENI",
+      "company_name": "Century Insurance Company Ltd.       ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "21 Apr 2026"
+    },
+    {
+      "company_code": "ALIFE",
+      "company_name": "Adamjee Life Assurance Company Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Apr 2026"
+    },
+    {
+      "company_code": "AICL",
+      "company_name": "Adamjee Insurance Company Ltd.              ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Apr 2026"
+    },
+    {
+      "company_code": "AGIC",
+      "company_name": "Askari General Insurance Company. Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Apr 2026"
+    },
+    {
+      "company_code": "WAFI",
+      "company_name": "Wafi Energy Pakistan Limited (Shell Pakistan Ltd)",
+      "sector_name": "OIL \u0026 GAS MARKETING COMPANIES",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Apr 2026"
+    },
+    {
+      "company_code": "SPWL",
+      "company_name": "Saif Power Ltd.",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "7.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Apr 2026"
+    },
+    {
+      "company_code": "RMPL",
+      "company_name": "Rafhan Maize Products Co. Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "1500%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Apr 2026"
+    },
+    {
+      "company_code": "FCEPL",
+      "company_name": "Frieslandcampina Engro Pakistan Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "35%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Apr 2026"
+    },
+    {
+      "company_code": "ACPL",
+      "company_name": "Attock Cement Pakistan Ltd.",
+      "sector_name": "CEMENT",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Apr 2026"
+    },
+    {
+      "company_code": "KSBP",
+      "company_name": "KSB Pumps Company Ltd.                   ",
+      "sector_name": "ENGINEERING",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "14 Apr 2026"
+    },
+    {
+      "company_code": "AGP",
+      "company_name": "AGP Ltd.",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Apr 2026"
+    },
+    {
+      "company_code": "UPFL",
+      "company_name": "Unilever Pakistan Foods Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "2160%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Apr 2026"
+    },
+    {
+      "company_code": "EWIC",
+      "company_name": "East West Insurance Co. Ltd.            ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "10%",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Apr 2026"
+    },
+    {
+      "company_code": "DCR",
+      "company_name": "Dolmen City Reit",
+      "sector_name": "REAL ESTATE INVESTMENT TRUST",
+      "bm_dividend": "6.60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Apr 2026"
+    },
+    {
+      "company_code": "HICL",
+      "company_name": "Habib Insurance Co. Ltd.                ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Apr 2026"
+    },
+    {
+      "company_code": "NESTLE",
+      "company_name": "Nestle Pakistan Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "2560%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Apr 2026"
+    },
+    {
+      "company_code": "ZIL",
+      "company_name": "ZIL Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Apr 2026"
+    },
+    {
+      "company_code": "RICL",
+      "company_name": "Reliance  Insurance Co. Ltd.            ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "30%",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Apr 2026"
+    },
+    {
+      "company_code": "SHNI",
+      "company_name": "Shaheen Insurance Co. Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "30%",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Apr 2026"
+    },
+    {
+      "company_code": "ATIL",
+      "company_name": "Atlas Insurance Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Apr 2026"
+    },
+    {
+      "company_code": "HPL",
+      "company_name": "Hoechst Pakistan Ltd.(Sanofi-Aventis)",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "1900%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "01 Apr 2026"
+    },
+    {
+      "company_code": "FATIMA",
+      "company_name": "Fatima Fertilizer Company Ltd.",
+      "sector_name": "FERTILIZER",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Mar 2026"
+    },
+    {
+      "company_code": "PAKT",
+      "company_name": "Pakistan Tobacco Company Ltd.               ",
+      "sector_name": "TOBACCO",
+      "bm_dividend": "350%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "27 Mar 2026"
+    },
+    {
+      "company_code": "DLL",
+      "company_name": "Dawood Lawrencepur Ltd.",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "140%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "25 Mar 2026"
+    },
+    {
+      "company_code": "JGICL",
+      "company_name": " Jubilee General Insurance Co. Ltd.          ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "24 Mar 2026"
+    },
+    {
+      "company_code": "UNIC",
+      "company_name": "United Insurance Co. of Pakistan Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "20%",
+      "bm_right_per": "",
+      "bm_bc_exp": "24 Mar 2026"
+    },
+    {
+      "company_code": "HBL",
+      "company_name": "Habib Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Mar 2026"
+    },
+    {
+      "company_code": "UBL",
+      "company_name": "United Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "160%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Mar 2026"
+    },
+    {
+      "company_code": "BOK",
+      "company_name": "The Bank of Khyber",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "17%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Mar 2026"
+    },
+    {
+      "company_code": "BOP",
+      "company_name": "The Bank Of Punjab   ",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Mar 2026"
+    },
+    {
+      "company_code": "FABL",
+      "company_name": "Faysal Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Mar 2026"
+    },
+    {
+      "company_code": "EPQL",
+      "company_name": "Engro Powergen Qadirpur Ltd.",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "18 Mar 2026"
+    },
+    {
+      "company_code": "EFUL",
+      "company_name": "EFU Life Assurance Ltd.          ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "105%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "18 Mar 2026"
+    },
+    {
+      "company_code": "EFUG",
+      "company_name": "EFU General Insurance Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "55%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "18 Mar 2026"
+    },
+    {
+      "company_code": "SCBPL",
+      "company_name": "Standard Chartered Bank Pakistan Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "JLICL",
+      "company_name": " Jubilee Life Insurance Co. Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "NBP",
+      "company_name": "National Bank Of Pakistan ",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "350%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "HMB",
+      "company_name": "Habib Metropolitan Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "45%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "BIPL",
+      "company_name": "Bankislami Pakistan ",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "MCB",
+      "company_name": "MCB Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "90%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "ABL",
+      "company_name": "Allied Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Mar 2026"
+    },
+    {
+      "company_code": "EFERT",
+      "company_name": "Engro Fertilizers Ltd.",
+      "sector_name": "FERTILIZER",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Mar 2026"
+    },
+    {
+      "company_code": "BAFL",
+      "company_name": "Bank Alfalah Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Mar 2026"
+    },
+    {
+      "company_code": "MEBL",
+      "company_name": "Meezan Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "70%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Mar 2026"
+    },
+    {
+      "company_code": "MFFL",
+      "company_name": "Mitchells Fruit Farms Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "12.1433%",
+      "bm_bc_exp": "16 Mar 2026"
+    },
+    {
+      "company_code": "BAHL",
+      "company_name": "Bank AL-Habib Ltd.                   ",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "45%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Mar 2026"
+    },
+    {
+      "company_code": "KAPCO",
+      "company_name": "Kot Addu Power Company Ltd.",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Mar 2026"
+    },
+    {
+      "company_code": "GEMPAPL",
+      "company_name": "Pak Agro Packaging Ltd.(Gem)",
+      "sector_name": "PAPER, BOARD \u0026 PACKAGING",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "11 Mar 2026"
+    },
+    {
+      "company_code": "PTL",
+      "company_name": "Panther Tyres Ltd.",
+      "sector_name": "AUTOMOBILE PARTS \u0026 ACCESSORIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "11 Mar 2026"
+    },
+    {
+      "company_code": "NATF",
+      "company_name": "National Foods Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "10 Mar 2026"
+    },
+    {
+      "company_code": "GHGL",
+      "company_name": "Ghani Glass Ltd.             ",
+      "sector_name": "GLASS \u0026 CERAMICS",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "10 Mar 2026"
+    },
+    {
+      "company_code": "STYLERS",
+      "company_name": "Stylers International Limited",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "2.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Mar 2026"
+    },
+    {
+      "company_code": "DOL",
+      "company_name": "Descon Oxychem Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Mar 2026"
+    },
+    {
+      "company_code": "AKBL",
+      "company_name": "Askari Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "17.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Mar 2026"
+    },
+    {
+      "company_code": "SHDT",
+      "company_name": "Shadab Textile Mills Ltd.",
+      "sector_name": "TEXTILE SPINNING",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "37.65%",
+      "bm_bc_exp": "09 Mar 2026"
+    },
+    {
+      "company_code": "NCL",
+      "company_name": "Nishat Chunian Ltd.",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "09 Mar 2026"
+    },
+    {
+      "company_code": "UDPL",
+      "company_name": "United Distributors Pakistan Ltd.   ",
+      "sector_name": "MISCELLANEOUS",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "SAPT",
+      "company_name": "Sapphire Textile Mills Ltd.             ",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "DYNO",
+      "company_name": "Dynea Pakistan Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "125%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "HUBC",
+      "company_name": "The Hub Power Company Ltd. Consolidated",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "OGDC",
+      "company_name": "Oil \u0026 Gas Development Company Ltd.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "42.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "POL",
+      "company_name": "Pakistan Oilfields Ltd.                 ",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "275%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "ATRL",
+      "company_name": "Attock Refinery Ltd.                    ",
+      "sector_name": "REFINERY",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "BWCL",
+      "company_name": "Bestway Cement Ltd",
+      "sector_name": "CEMENT",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "FFC",
+      "company_name": "Fauji Fertilizer Company Ltd. Consolidated",
+      "sector_name": "FERTILIZER",
+      "bm_dividend": "85%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "PNSC",
+      "company_name": "Pakistan National Shipping Corp. Consolidated",
+      "sector_name": "TRANSPORT",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Mar 2026"
+    },
+    {
+      "company_code": "IREIT",
+      "company_name": "Image Reit",
+      "sector_name": "REAL ESTATE INVESTMENT TRUST",
+      "bm_dividend": "2%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Mar 2026"
+    },
+    {
+      "company_code": "INDU",
+      "company_name": "Indus Motor Company Ltd.",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "460%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Mar 2026"
+    },
+    {
+      "company_code": "TGL",
+      "company_name": "Tariq Glass Industries Ltd.",
+      "sector_name": "GLASS \u0026 CERAMICS",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Mar 2026"
+    },
+    {
+      "company_code": "SNBL",
+      "company_name": "Soneri Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Mar 2026"
+    },
+    {
+      "company_code": "MTL",
+      "company_name": "Millat Tractors Ltd. Consolidated                 ",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "200%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Mar 2026"
+    },
+    {
+      "company_code": "WASL",
+      "company_name": "Wasl Mobility Modaraba Formerly (PMI)",
+      "sector_name": "MODARABAS",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "24.21%",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "APL",
+      "company_name": "Attock Petroleum Ltd.",
+      "sector_name": "OIL \u0026 GAS MARKETING COMPANIES",
+      "bm_dividend": "200%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "BIFO",
+      "company_name": "Biafo Industries Ltd.               ",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "ICL",
+      "company_name": "Ittehad Chemicals Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "CPPL",
+      "company_name": "Cherat Packaging Ltd.",
+      "sector_name": "PAPER, BOARD \u0026 PACKAGING",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "MUREB",
+      "company_name": "Murree Brewery Company Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "120%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Mar 2026"
+    },
+    {
+      "company_code": "NICL",
+      "company_name": "Nimir Industrial Chemicals Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "27 Feb 2026"
+    },
+    {
+      "company_code": "CHCC",
+      "company_name": "Cherat Cement Company Ltd.",
+      "sector_name": "CEMENT",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "27 Feb 2026"
+    },
+    {
+      "company_code": "PPL",
+      "company_name": "Pakistan Petroleum Ltd.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "26 Feb 2026"
+    },
+    {
+      "company_code": "SPEL",
+      "company_name": "SPEL Ltd.",
+      "sector_name": "PAPER, BOARD \u0026 PACKAGING",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "24 Feb 2026"
+    },
+    {
+      "company_code": "THALL",
+      "company_name": "Thal Ltd.",
+      "sector_name": "AUTOMOBILE PARTS \u0026 ACCESSORIES",
+      "bm_dividend": "300%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Feb 2026"
+    },
+    {
+      "company_code": "CSAP",
+      "company_name": "Crescent Steel and Allied Proudcts Ltd.",
+      "sector_name": "ENGINEERING",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Feb 2026"
+    },
+    {
+      "company_code": "BWHL",
+      "company_name": "Baluchistan Wheels Ltd.",
+      "sector_name": "AUTOMOBILE PARTS \u0026 ACCESSORIES",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Feb 2026"
+    },
+    {
+      "company_code": "ILP",
+      "company_name": "Interloop Limited",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "16 Feb 2026"
+    },
+    {
+      "company_code": "TSBL",
+      "company_name": "Trust Securities and  Brokerage Ltd.",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "150%",
+      "bm_bc_exp": "16 Feb 2026"
+    },
+    {
+      "company_code": "LOADS",
+      "company_name": "Loads Ltd.",
+      "sector_name": "AUTOMOBILE PARTS \u0026 ACCESSORIES",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "47.761%",
+      "bm_bc_exp": "13 Feb 2026"
+    },
+    {
+      "company_code": "MCBIM",
+      "company_name": "MCB Investment Management Ltd.(MCB-Arif Habib)",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Feb 2026"
+    },
+    {
+      "company_code": "COLG",
+      "company_name": "Colgate Palmolive (Pak) Ltd.       ",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "290%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "13 Feb 2026"
+    },
+    {
+      "company_code": "ISL",
+      "company_name": "International Steels Ltd.",
+      "sector_name": "ENGINEERING",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Feb 2026"
+    },
+    {
+      "company_code": "LSECL",
+      "company_name": "LSE Capital Limited",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "6.82%",
+      "bm_bc_exp": "06 Feb 2026"
+    },
+    {
+      "company_code": "INIL",
+      "company_name": "International Industries Ltd. Consolidated        ",
+      "sector_name": "ENGINEERING",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Feb 2026"
+    },
+    {
+      "company_code": "SAZEW",
+      "company_name": "Sazgar Engineering  Works Ltd.",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "150%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Feb 2026"
+    },
+    {
+      "company_code": "MRNS",
+      "company_name": "Mehran Sugar Mills Ltd.",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Feb 2026"
+    },
+    {
+      "company_code": "LCI",
+      "company_name": "Lucky Core Industries Ltd. I.C.I Pakistan Consolid",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "262.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Feb 2026"
+    },
+    {
+      "company_code": "LOTCHEM",
+      "company_name": "Lotte Chemical (Pak) Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "02 Feb 2026"
+    },
+    {
+      "company_code": "MARI",
+      "company_name": "Mari Energies Limited.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "83%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Jan 2026"
+    },
+    {
+      "company_code": "MRNS",
+      "company_name": "Mehran Sugar Mills Ltd.",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Jan 2026"
+    },
+    {
+      "company_code": "AABS",
+      "company_name": "AL- Abbas Sugar Mills Ltd.          ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "130%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Jan 2026"
+    },
+    {
+      "company_code": "ALNRS",
+      "company_name": "Al-Noor  Sugar Mills Ltd.               ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Jan 2026"
+    },
+    {
+      "company_code": "NONS",
+      "company_name": "Noon Sugar Mills Ltd.                   ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Jan 2026"
+    },
+    {
+      "company_code": "SHSML",
+      "company_name": "Shahmurad Sugar Mills Ltd.              ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "60%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Jan 2026"
+    },
+    {
+      "company_code": "CSIL",
+      "company_name": "Crescent Star Insurance Ltd.        ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "38%",
+      "bm_bc_exp": "16 Jan 2026"
+    },
+    {
+      "company_code": "SHJS",
+      "company_name": "Shahtaj Sugar Mills Ltd.                ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "15 Jan 2026"
+    },
+    {
+      "company_code": "ADAMS",
+      "company_name": "Adam Sugar Mills Ltd.                   ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "15 Jan 2026"
+    },
+    {
+      "company_code": "BAFS",
+      "company_name": "Baba Farid Sugar Mills Ltd",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "15 Jan 2026"
+    },
+    {
+      "company_code": "TICL",
+      "company_name": "Thal Industries Corporation Ltd.        ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "15 Jan 2026"
+    },
+    {
+      "company_code": "HABSM",
+      "company_name": "Habib Sugar Mills Ltd.                  ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "120%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "14 Jan 2026"
+    },
+    {
+      "company_code": "JDWS",
+      "company_name": "JDW Sugar Mills Ltd.              ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "250%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "14 Jan 2026"
+    },
+    {
+      "company_code": "SASML",
+      "company_name": "Sindh Abadgars Sugar Mills Ltd.                 ",
+      "sector_name": "SUGAR \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "14 Jan 2026"
+    },
+    {
+      "company_code": "DCR",
+      "company_name": "Dolmen City Reit",
+      "sector_name": "REAL ESTATE INVESTMENT TRUST",
+      "bm_dividend": "6.30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "26 Dec 2025"
+    },
+    {
+      "company_code": "786",
+      "company_name": "786 Investments Limited",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "33.33%",
+      "bm_bc_exp": "15 Dec 2025"
+    },
+    {
+      "company_code": "LSEVL",
+      "company_name": "LSE Ventures Ltd.",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "11.14%",
+      "bm_bc_exp": "15 Dec 2025"
+    },
+    {
+      "company_code": "ARPL",
+      "company_name": "Archroma Pakistan Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "15 Dec 2025"
+    },
+    {
+      "company_code": "FTMM",
+      "company_name": "First Treet Mfg Modaraba",
+      "sector_name": "MODARABAS",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "25 Nov 2025"
+    },
+    {
+      "company_code": "LIVEN",
+      "company_name": "Liven Pharma Ltd. (Formerly LMSM)",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "21.496%",
+      "bm_bc_exp": "25 Nov 2025"
+    },
+    {
+      "company_code": "BRRG",
+      "company_name": "B.R.R. Guardian Ltd.",
+      "sector_name": "PROPERTY",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Nov 2025"
+    },
+    {
+      "company_code": "LSEVL",
+      "company_name": "LSE Ventures Ltd.",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Nov 2025"
+    },
+    {
+      "company_code": "SNGP",
+      "company_name": "Sui Northern Gas Pipelines Ltd.         ",
+      "sector_name": "OIL \u0026 GAS MARKETING COMPANIES",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "19 Nov 2025"
+    },
+    {
+      "company_code": "SSGC",
+      "company_name": "Sui Southern Gas Company Ltd.",
+      "sector_name": "OIL \u0026 GAS MARKETING COMPANIES",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "18 Nov 2025"
+    },
+    {
+      "company_code": "ATLH",
+      "company_name": "Atlas Honda Ltd.                   ",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "460%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "11 Nov 2025"
+    },
+    {
+      "company_code": "PPL",
+      "company_name": "Pakistan Petroleum Ltd.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "10 Nov 2025"
+    },
+    {
+      "company_code": "HUBC",
+      "company_name": "The Hub Power Company Ltd. Consolidated",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "10 Nov 2025"
+    },
+    {
+      "company_code": "GVGL",
+      "company_name": "Ghani Value Glass Ltd.",
+      "sector_name": "GLASS \u0026 CERAMICS",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Nov 2025"
+    },
+    {
+      "company_code": "OGDC",
+      "company_name": "Oil \u0026 Gas Development Company Ltd.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "35%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Nov 2025"
+    },
+    {
+      "company_code": "RMPL",
+      "company_name": "Rafhan Maize Products Co. Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "1300%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Nov 2025"
+    },
+    {
+      "company_code": "GHGL",
+      "company_name": "Ghani Glass Ltd.             ",
+      "sector_name": "GLASS \u0026 CERAMICS",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "07 Nov 2025"
+    },
+    {
+      "company_code": "AKBL",
+      "company_name": "Askari Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "06 Nov 2025"
+    },
+    {
+      "company_code": "ATIL",
+      "company_name": "Atlas Insurance Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Nov 2025"
+    },
+    {
+      "company_code": "WAFI",
+      "company_name": "Wafi Energy Pakistan Limited (Shell Pakistan Ltd)",
+      "sector_name": "OIL \u0026 GAS MARKETING COMPANIES",
+      "bm_dividend": "30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Nov 2025"
+    },
+    {
+      "company_code": "INDU",
+      "company_name": "Indus Motor Company Ltd.",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "510%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "05 Nov 2025"
+    },
+    {
+      "company_code": "HALEON",
+      "company_name": "Haleon Pakistan Ltd.(Formerly GSKCH Pak Ltd)",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "SPWL",
+      "company_name": "Saif Power Ltd.",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "EFUG",
+      "company_name": "EFU General Insurance Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "AGIC",
+      "company_name": "Askari General Insurance Company. Ltd.",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "",
+      "bm_bonus": "",
+      "bm_right_per": "40%",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "FABL",
+      "company_name": "Faysal Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "GWLC",
+      "company_name": "Gharibwal Cement Ltd.                   ",
+      "sector_name": "CEMENT",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "04 Nov 2025"
+    },
+    {
+      "company_code": "UPFL",
+      "company_name": "Unilever Pakistan Foods Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "4660%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "MEBL",
+      "company_name": "Meezan Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "70%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "HMB",
+      "company_name": "Habib Metropolitan Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "BAFL",
+      "company_name": "Bank Alfalah Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "EFUL",
+      "company_name": "EFU Life Assurance Ltd.          ",
+      "sector_name": "INSURANCE",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "FFC",
+      "company_name": "Fauji Fertilizer Company Ltd. Consolidated",
+      "sector_name": "FERTILIZER",
+      "bm_dividend": "95%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "MUREB",
+      "company_name": "Murree Brewery Company Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "NICL",
+      "company_name": "Nimir Industrial Chemicals Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "03 Nov 2025"
+    },
+    {
+      "company_code": "HBL",
+      "company_name": "Habib Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "31 Oct 2025"
+    },
+    {
+      "company_code": "EPQL",
+      "company_name": "Engro Powergen Qadirpur Ltd.",
+      "sector_name": "POWER GENERATION \u0026 DISTRIBUTION",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "31 Oct 2025"
+    },
+    {
+      "company_code": "AIRLINK",
+      "company_name": "Air Link Communication Ltd",
+      "sector_name": "TECHNOLOGY \u0026 COMMUNICATION",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "31 Oct 2025"
+    },
+    {
+      "company_code": "ABL",
+      "company_name": "Allied Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "31 Oct 2025"
+    },
+    {
+      "company_code": "PNSC",
+      "company_name": "Pakistan National Shipping Corp. Consolidated",
+      "sector_name": "TRANSPORT",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "31 Oct 2025"
+    },
+    {
+      "company_code": "UDPL",
+      "company_name": "United Distributors Pakistan Ltd.   ",
+      "sector_name": "MISCELLANEOUS",
+      "bm_dividend": "170%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Oct 2025"
+    },
+    {
+      "company_code": "BAHL",
+      "company_name": "Bank AL-Habib Ltd.                   ",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "35%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Oct 2025"
+    },
+    {
+      "company_code": "MCB",
+      "company_name": "MCB Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "90%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Oct 2025"
+    },
+    {
+      "company_code": "PAKT",
+      "company_name": "Pakistan Tobacco Company Ltd.               ",
+      "sector_name": "TOBACCO",
+      "bm_dividend": "200%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Oct 2025"
+    },
+    {
+      "company_code": "NATF",
+      "company_name": "National Foods Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "360%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "30 Oct 2025"
+    },
+    {
+      "company_code": "SAZEW",
+      "company_name": "Sazgar Engineering  Works Ltd.",
+      "sector_name": "AUTOMOBILE ASSEMBLER",
+      "bm_dividend": "150%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "27 Oct 2025"
+    },
+    {
+      "company_code": "EFERT",
+      "company_name": "Engro Fertilizers Ltd.",
+      "sector_name": "FERTILIZER",
+      "bm_dividend": "45%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "24 Oct 2025"
+    },
+    {
+      "company_code": "UBL",
+      "company_name": "United Bank Ltd.",
+      "sector_name": "COMMERCIAL BANKS",
+      "bm_dividend": "160%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Oct 2025"
+    },
+    {
+      "company_code": "BWCL",
+      "company_name": "Bestway Cement Ltd",
+      "sector_name": "CEMENT",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Oct 2025"
+    },
+    {
+      "company_code": "NESTLE",
+      "company_name": "Nestle Pakistan Ltd.",
+      "sector_name": "FOOD \u0026 PERSONAL CARE PRODUCTS",
+      "bm_dividend": "780%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "23 Oct 2025"
+    },
+    {
+      "company_code": "IMAGE",
+      "company_name": "Image Pakistan Ltd.               ",
+      "sector_name": "SYNTHETIC \u0026 RAYON",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "21 Oct 2025"
+    },
+    {
+      "company_code": "OGDC",
+      "company_name": "Oil \u0026 Gas Development Company Ltd.",
+      "sector_name": "OIL \u0026 GAS EXPLORATION COMPANIES",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "21 Oct 2025"
+    },
+    {
+      "company_code": "PSX",
+      "company_name": "Pakistan Stock Exchange Ltd.",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "17%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "DCR",
+      "company_name": "Dolmen City Reit",
+      "sector_name": "REAL ESTATE INVESTMENT TRUST",
+      "bm_dividend": "6.30%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "MCBIM",
+      "company_name": "MCB Investment Management Ltd.(MCB-Arif Habib)",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "35%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "SYM",
+      "company_name": "Symmetry Group Ltd. Consolidated",
+      "sector_name": "TECHNOLOGY \u0026 COMMUNICATION",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "PTL",
+      "company_name": "Panther Tyres Ltd.",
+      "sector_name": "AUTOMOBILE PARTS \u0026 ACCESSORIES",
+      "bm_dividend": "20%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "KOIL",
+      "company_name": "Kohinoor Industries Ltd.                ",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "7.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "PRWM",
+      "company_name": "Prosperity Weaving Mills Ltd.        ",
+      "sector_name": "TEXTILE WEAVING",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "NAGC",
+      "company_name": "Nagina Cotton Mills Ltd.                ",
+      "sector_name": "TEXTILE SPINNING",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "ELSM",
+      "company_name": "Ellcot  Spinning Mills Ltd.             ",
+      "sector_name": "TEXTILE SPINNING",
+      "bm_dividend": "40%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "SHDT",
+      "company_name": "Shadab Textile Mills Ltd.",
+      "sector_name": "TEXTILE SPINNING",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "CSAP",
+      "company_name": "Crescent Steel and Allied Proudcts Ltd.",
+      "sector_name": "ENGINEERING",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "PNSC",
+      "company_name": "Pakistan National Shipping Corp. Consolidated",
+      "sector_name": "TRANSPORT",
+      "bm_dividend": "230%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "SSOM",
+      "company_name": "S. S. Oil Mills Ltd.",
+      "sector_name": "VANASPATI \u0026 ALLIED INDUSTRIES",
+      "bm_dividend": "50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "GHGL",
+      "company_name": "Ghani Glass Ltd.             ",
+      "sector_name": "GLASS \u0026 CERAMICS",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "20 Oct 2025"
+    },
+    {
+      "company_code": "CPHL",
+      "company_name": "Citi Pharma Ltd.",
+      "sector_name": "PHARMACEUTICALS",
+      "bm_dividend": "35%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "UDLI",
+      "company_name": "UDL International Limited",
+      "sector_name": "MISCELLANEOUS",
+      "bm_dividend": "5%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "STYLERS",
+      "company_name": "Stylers International Limited",
+      "sector_name": "TEXTILE COMPOSITE",
+      "bm_dividend": "7.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "GEMBCEM",
+      "company_name": "Burj Clean Energy Modaraba (Gem)",
+      "sector_name": "MODARABAS",
+      "bm_dividend": "3.90%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "ZAL",
+      "company_name": "Zarea Limited",
+      "sector_name": "TECHNOLOGY \u0026 COMMUNICATION",
+      "bm_dividend": "100%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "AKDSL",
+      "company_name": "AKD Securities Ltd.(Formerly BIPL Securities)",
+      "sector_name": "INV. BANKS / INV. COS. / SECURITIES COS.",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "UDPL",
+      "company_name": "United Distributors Pakistan Ltd.   ",
+      "sector_name": "MISCELLANEOUS",
+      "bm_dividend": "12.50%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "PIM",
+      "company_name": "Popular Islamic Modaraba",
+      "sector_name": "MODARABAS",
+      "bm_dividend": "10%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "SARC",
+      "company_name": "Sardar Chemical Industries Ltd.",
+      "sector_name": "CHEMICAL",
+      "bm_dividend": "15%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    },
+    {
+      "company_code": "SMCPL",
+      "company_name": "Safe Mix Concrete Ltd.",
+      "sector_name": "CEMENT",
+      "bm_dividend": "25%",
+      "bm_bonus": "",
+      "bm_right_per": "",
+      "bm_bc_exp": "17 Oct 2025"
+    }
+  ]
+}

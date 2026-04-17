@@ -56,3 +56,47 @@ class IndexDailyPrice(models.Model):
 
     def __str__(self):
         return f"{self.index.symbol} - {self.date}"
+    
+
+class Dividend(models.Model):
+    DIVIDEND_TYPES = [
+        ('cash', 'Cash Dividend'),
+        ('bonus', 'Bonus Shares'),
+        ('right', 'Right Shares'),
+        ('mixed', 'Cash + Bonus'),
+    ]
+
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE, related_name='dividends')
+    ex_date = models.DateField()
+    dividend_type = models.CharField(max_length=10, choices=DIVIDEND_TYPES)
+    cash_amount = models.DecimalField(max_digits=10, decimal_places=4, null=True, blank=True)
+    bonus_ratio = models.DecimalField(max_digits=6, decimal_places=4, null=True, blank=True)
+    raw_dividend = models.CharField(max_length=50, blank=True)
+    raw_bonus = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['-ex_date']
+        unique_together = ['stock', 'ex_date']
+        verbose_name_plural = "Dividends"
+
+    def __str__(self):
+        return f"{self.stock.symbol} - {self.ex_date} - {self.cash_amount}"
+    
+
+class PurificationRatio(models.Model):
+    stock = models.ForeignKey(Stock, on_delete=models.CASCADE, related_name='purification_ratios')
+    ratio = models.DecimalField(max_digits=6, decimal_places=4, null=True, blank=True)
+    # null ratio means Islamic institution - no purification needed
+    period = models.CharField(max_length=20)  # e.g., "H1-2025"
+    effective_from = models.DateField()
+    effective_to = models.DateField(null=True, blank=True)
+    source_document = models.CharField(max_length=100, blank=True)
+
+    class Meta:
+        ordering = ['-effective_from']
+        unique_together = ['stock', 'effective_from']
+        verbose_name_plural = "Purification Ratios"
+
+    def __str__(self):
+        ratio_display = f"{self.ratio}%" if self.ratio else "N/A (Islamic)"
+        return f"{self.stock.symbol} - {self.period} - {ratio_display}"

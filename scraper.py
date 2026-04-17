@@ -1,33 +1,64 @@
-import requests
-from datetime import datetime
+import requests, json
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 
 SYMBOLS_URL = "https://dps.psx.com.pk/symbols"
 EOD_URL = "https://dps.psx.com.pk/timeseries/eod/{symbol}"
-KMIALLSHR_URL = "https://dps.psx.com.pk/indices/KMIALLSHR"
+KMIALLSHR_URL = "https://dps.psx.com.pk/index/KMIALLSHR"
+SCSTRADE_DIVIDENDS_URL = "https://www.scstrade.com/MarketStatistics/MS_xDates.aspx/chartact"
 
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:143.0) Gecko/20100101 Firefox/143.0",
 }
 
+def fetch_dividends(symbol, company_name):
+    """Fetch dividend history from scstrade.com"""
+    headers = {
+        **HEADERS,
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://www.scstrade.com/MarketStatistics/MS_xDates.aspx",
+        "Origin": "https://www.scstrade.com",
+    }
+
+    payload = {
+        "par": f"{symbol} - {company_name}",
+        "_search": False,
+        "nd": 1776421917234,
+        "rows": "100",
+        "page": 1,
+        "sidx": "",
+        "sord": "asc"
+    }
+
+    response = requests.post(
+        SCSTRADE_DIVIDENDS_URL,
+        headers=headers,
+        data=json.dumps(payload)
+    )
+
+    print(f"Status: {response.status_code}")
+    data = response.json()
+    return data.get("d", [])
 
 def fetch_shariah_symbols():
-    """Fetch all shariah compliant stocks from PSX"""
+    """Fetch all KMI All Share (Shariah compliant) symbols"""
     response = requests.get(KMIALLSHR_URL, headers=HEADERS)
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(response.text, 'html.parser')
 
     symbols = []
     rows = soup.select('tbody.tbl__body tr')
     for row in rows:
-        symbol_td = row.find("td", {"data-order": True})
+        symbol_td = row.find('td', {'data-order': True})
         if symbol_td:
-            symbols.append(symbol_td["data-order"])
-    
+            symbols.append(symbol_td['data-order'])
+
     return symbols
 
+
 def fetch_all_symbols():
-    "Fetch all symbols with their metadata from PSX"
+    """Fetch all symbols from PSX with metadata"""
     response = requests.get(SYMBOLS_URL, headers=HEADERS)
     return response.json()
 
@@ -35,9 +66,16 @@ def fetch_all_symbols():
 def fetch_eod_prices(symbol):
     """Fetch EOD price history for a symbol"""
     url = EOD_URL.format(symbol=symbol)
-    response = requests.get(url, headers=HEADERS)
-    data = response.json()
-    return data.get("data", [])
+    try:
+        response = requests.get(url, headers=HEADERS)
+        if not response.text.strip():
+            print(f"  Warning: Empty response for {symbol}")
+            return []
+        data = response.json()
+        return data.get("data", [])
+    except Exception as e:
+        print(f"  Warning: Failed to fetch {symbol} - {e}")
+        return []
 
 
 def parse_eod_row(row):
@@ -52,19 +90,33 @@ def parse_eod_row(row):
     }
 
 
-if __name__ == "__main__":
-    # Test 1: fetch Shariah symbols
-    print("Fetching Shariah compliant symbols...")
-    shariah = fetch_shariah_symbols()
-    print(f"Total Shariah compliant stocks: {len(shariah)}")
-    print(f"First 5: {shariah[:5]}")
+def fetch_payouts(symbol):
+    headers = {
+        **HEADERS,
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://dps.psx.com.pk/payouts/",
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    }
 
-    # Test 2: cross reference with full symbols list
-    print("\nFetching full PSX symbols list...")
-    all_symbols = fetch_all_symbols()
-    all_map = {s['symbol']: s for s in all_symbols}
-    
-    print("\nSample Shariah stocks with metadata:")
-    for sym in shariah[:5]:
-        meta = all_map.get(sym, {})
-        print(f"{sym} - {meta.get('name')} - {meta.get('sectorName')}")
+    data = f"symbol={symbol}&count=25&offset=0"
+    response = requests.post(
+        "https://dps.psx.com.pk/payouts",
+        headers=headers,
+        data=data
+    )
+    # Print raw HTML so we can see the structure
+    print(response.text)
+
+
+
+
+if __name__ == "__main__":
+    print("Testing dividends for MEBL...")
+    dividends = fetch_dividends("MEBL", "Meezan Bank Ltd.")
+    print(f"Total records: {len(dividends)}")
+    print("\nFirst 3:")
+    for d in dividends[:3]:
+        print(d)
+    print("\nLast 3:")
+    for d in dividends[-3:]:
+        print(d)

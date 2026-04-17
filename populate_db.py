@@ -1,5 +1,8 @@
 import os
 import django
+from dividend_scraper import fetch_dividends, parse_dividend
+from stocks.models import Stock, DailyPrice, Index, IndexDailyPrice, Dividend, PurificationRatio
+from purification_parser import parse_purification_pdf
 
 # Setup Django environment before importing models
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
@@ -97,6 +100,10 @@ def populate_prices(symbol=None, limit=None):
         print(f"[{i}/{total_stocks}] Fetching prices for {stock.symbol}...")
         rows = fetch_eod_prices(stock.symbol)
 
+        if not rows:
+            print(f"  Skipped - no data")
+            continue    
+
         prices_to_create = []
         for row in rows:
             parsed = parse_eod_row(row)
@@ -119,15 +126,113 @@ def populate_prices(symbol=None, limit=None):
         print(f"  Saved {len(prices_to_create)} price records")
 
 
-    
+def populate_purification(pdf_path, period, effective_from, effective_to=None, source_document=None):
+    """Parse a KMI PDF and save purification ratios to DB"""
+    from purification_parser import parse_purification_pdf
+
+    results = parse_purification_pdf(
+        pdf_path=pdf_path,
+        period=period,
+        effective_from=effective_from,
+        effective_to=effective_to,
+        source_document=source_document
+    )
+
+    created_count = 0
+    skipped_count = 0
+    not_found = []
+
+    for r in results:
+        try:
+            stock = Stock.objects.get(symbol=r['symbol'])
+        except Stock.DoesNotExist:
+            not_found.append(r['symbol'])
+            continue
+
+        _, created = PurificationRatio.objects.get_or_create(
+            stock=stock,
+            effective_from=r['effective_from'],
+            defaults={
+                'ratio': r['ratio'],
+                'period': r['period'],
+                'effective_to': r['effective_to'],
+                'source_document': r['source_document'] or '',
+            }
+        )
+        if created:
+            created_count += 1
+        else:
+            skipped_count += 1
+
+    print(f"  Created: {created_count}")
+    print(f"  Skipped (already exists): {skipped_count}")
+    if not_found:
+        print(f"  Not in DB ({len(not_found)}): {not_found[:10]}")
+
+def populate_dividends(symbol=None):
+    """Fetch dividend history and save to Dividend table"""
+    import time
+
+    if symbol:
+        stocks = Stock.objects.filter(symbol=symbol)
+    else:
+        stocks = Stock.objects.all()
+
+    total_stocks = stocks.count()
+
+    for i, stock in enumerate(stocks, 1):
+        print(f"[{i}/{total_stocks}] Fetching dividends for {stock.symbol}...")
+        entries = fetch_dividends(stock.symbol)
+
+        if not entries:
+            print(f"  Skipped - no data")
+            continue
+
+        created_count = 0
+        for entry in entries:
+            parsed = parse_dividend(stock.symbol, entry)
+
+            if not parsed['ex_date']:
+                continue
+
+            # Determine dividend type
+            if parsed['cash_amount'] and parsed['bonus_ratio']:
+                div_type = 'mixed'
+            elif parsed['cash_amount']:
+                div_type = 'cash'
+            elif parsed['bonus_ratio']:
+                div_type = 'bonus'
+            else:
+                continue
+
+            _, created = Dividend.objects.get_or_create(
+                stock=stock,
+                ex_date=parsed['ex_date'],
+                defaults={
+                    'dividend_type': div_type,
+                    'cash_amount': parsed['cash_amount'],
+                    'bonus_ratio': parsed['bonus_ratio'],
+                    'raw_dividend': parsed['raw_dividend'],
+                    'raw_bonus': parsed['raw_bonus'],
+                }
+            )
+            if created:
+                created_count += 1
+
+        print(f"  Saved {created_count} dividend records")
+        time.sleep(0.3)    
+
 
 
 if __name__ == "__main__":
     print("=== Step 1: Populate Stocks ===")
     populate_stocks()
 
-    print("\n=== Step 2: Populate Prices (MEBL only for now) ===")
-    populate_prices(symbol='MEBL')
+    print("\n=== Step 2: Populate All Stock Prices ===")
+    populate_prices()
 
     print("\n=== Step 3: Populate Indices ===")
     populate_indices()
+
+    print("\n=== Step 4: Populate Dividends ===")
+    populate_dividends()

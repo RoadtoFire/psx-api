@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Stock, Index, DailyPrice, IndexDailyPrice
+from .models import Stock, Index, DailyPrice, IndexDailyPrice, Dividend, PurificationRatio
 
 
 @admin.register(Stock)
@@ -26,3 +26,18 @@ class IndexDailyPriceAdmin(admin.ModelAdmin):
     list_display = ['index', 'date', 'open', 'close', 'volume']
     list_filter = ['index']
     date_hierarchy = 'date'
+
+
+@admin.register(Dividend)
+class DividendAdmin(admin.ModelAdmin):
+    list_display = ['stock', 'ex_date', 'dividend_type', 'cash_amount', 'bonus_ratio']
+    list_filter = ['dividend_type', 'stock']
+    date_hierarchy = 'ex_date'
+    search_fields = ['stock__symbol']
+
+
+@admin.register(PurificationRatio)
+class PurificationRatioAdmin(admin.ModelAdmin):
+    list_display = ['stock', 'period', 'ratio', 'effective_from', 'effective_to']
+    search_fields = ['stock__symbol']
+    list_filter = ['period']
