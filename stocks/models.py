@@ -5,6 +5,8 @@ class Stock(models.Model):
     symbol = models.CharField(max_length=10, unique=True, db_index=True)
     name = models.CharField(max_length=100)
     sector = models.CharField(max_length=50, blank=True)
+    is_active = models.BooleanField(default=True)
+    removed_date = models.DateField(null=True, blank=True)
 
     class Meta:
         ordering = ['symbol']
