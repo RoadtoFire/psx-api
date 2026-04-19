@@ -1,77 +1,62 @@
 # Amanat | امانت
-### Pakistan's first Shariah-compliant portfolio tracker
-
-[![Live Demo](https://img.shields.io/badge/Live-amanat--psx.vercel.app-emerald)](https://amanat-psx.vercel.app)
-[![Backend](https://img.shields.io/badge/API-Railway-purple)](https://trustworthy-spontaneity-production-61c4.up.railway.app/api/docs/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-
 #### Video Demo: (https://youtu.be/7kdBJh6AwE4)
 #### Description:
-Amanat is a free web app that automates Shariah-compliant portfolio tracking and dividend purification calculations for Pakistani Muslim investors on the Pakistan Stock Exchange. Built with Django REST Framework and React, it scrapes live PSX data, calculates dividend income with automatic tax deductions, and computes Islamic purification amounts using official Al-Meezan KMI recomposition ratios — eliminating the need for manual spreadsheet calculations.
----
 
-No spreadsheets. No manual calculations. Just add your transactions and Amanat handles everything.
+Amanat (امانت — Urdu for *trust* and *safekeeping*) is a full-stack web application built for Pakistani Muslim investors who want to participate in the Pakistan Stock Exchange (PSX) while staying Shariah compliant. The application automates dividend purification calculations, tracks portfolios in real time, and screens stocks against the KMI All Shares Islamic Index — eliminating the need for manual spreadsheet calculations that most Pakistani Muslim investors currently rely on.
 
----
+## The Problem
 
-## Features
+Pakistan has over 220,000 registered retail investors on the PSX. A significant portion of these investors follow Islamic finance principles, which means they are only permitted to invest in Shariah-compliant stocks — those that pass all 6 criteria of the KMI All Shares Islamic Index, developed jointly by the Pakistan Stock Exchange and Meezan Bank. Beyond stock selection, Islamic finance also requires investors to perform "purification" (تطہیر) — when a company earns even a small amount of income from non-permissible sources (under 5% of total revenue), the investor must donate the proportional amount of their dividend to charity. The purification ratio for each stock is published by Al-Meezan in semi-annual PDF recomposition reports. Before Amanat, investors had to manually cross-reference these PDFs, look up each stock's ratio, and calculate the amount themselves for every dividend received. Nobody was doing this consistently.
 
-### 📊 Portfolio Tracking
-- Track buy/sell transactions across all 285 KMI All Shares Islamic Index stocks
-- Real-time P&L per holding based on latest PSX prices
-- Cost basis vs current value breakdown
+## Architecture
 
-### 💰 Dividend Calculator
-- Complete dividend history for every stock you hold
-- Automatic tax deduction — 15% for filers, 30% for non-filers
-- Yearly breakdown with bar chart visualization
+Amanat uses a decoupled architecture — a Django REST Framework backend that exposes a REST API, consumed by a React frontend. I chose this approach over a traditional Django monolith (with server-rendered templates) because it allows the frontend to be deployed independently on Vercel's global CDN, giving Pakistani users fast load times, while the backend runs on Railway. It also means the API can eventually serve a mobile app without any backend changes.
 
-### 🌙 Shariah Purification
-- Automatic purification amounts calculated per dividend event
-- Based on official Al-Meezan KMI recomposition ratios (updated every 6 months)
-- One-click "mark as purified" to track your charity giving
+The backend is deployed on Railway and the frontend on Vercel. Authentication is handled with JWT tokens via the `djangorestframework-simplejwt` library. I chose JWT over Django's session-based authentication because the frontend is on a different domain than the backend, making cookie-based sessions impractical without complex CORS configuration.
 
-### 🕌 Shariah Compliance Education
-- Clear explanation of all 6 KMI screening criteria
-- Embedded Investkaar Urdu video course for new investors
-- Key concepts glossary (ex-date, book closure, bonus shares, etc.)
+## Backend Files
 
-### 📈 Stock Browser
-- All 285 Shariah compliant PSX stocks with logos
-- Filter by sector (Cement, Chemical, Fertilizer, etc.)
-- Stock detail modal with dividend history and purification rate
+**`config/settings.py`** — Django settings file. Configures the database using `dj_database_url` to parse the `DATABASE_URL` environment variable provided by Railway, sets up Celery with Redis as the broker and result backend, and configures CORS to allow requests from the Vercel frontend domain.
 
----
+**`config/celery.py`** — Celery application configuration. Initializes the Celery app and configures it to autodiscover tasks from all installed Django apps.
 
-## Tech Stack
+**`stocks/models.py`** — Defines the core data models: `Stock` (symbol, name, sector, logo URL), `StockPrice` (daily closing price per stock), and `Dividend` (dividend events with ex-date, amount, and purification ratio).
 
-### Backend
-| Technology | Purpose |
-|-----------|---------|
-| Django 6 + DRF | REST API |
-| PostgreSQL | Database |
-| Redis + Celery | Background tasks |
-| JWT Auth | Authentication |
-| Railway | Deployment |
+**`stocks/tasks.py`** — Contains the Celery tasks that run on a schedule: `update_daily_prices` scrapes end-of-day prices from the PSX data portal, `update_index_prices` updates index-level data, and `update_dividends` checks for new dividend announcements and updates the database if new records are found.
 
-### Frontend
-| Technology | Purpose |
-|-----------|---------|
-| React + Vite | UI framework |
-| Tailwind CSS v4 | Styling |
-| Recharts | Data visualization |
-| Lucide React | Icons |
-| Vercel | Deployment |
+**`stocks/schedules.py`** — Defines the Celery Beat schedule using crontab expressions. Prices are updated at 4:30 PM PKT on weekdays (after market close), dividends at 5:00 PM PKT, and ex-date notifications at 9:00 AM PKT — all Monday to Friday only, since the PSX does not trade on weekends.
 
-### Data Sources
-| Source | Data |
-|--------|------|
-| PSX (dps.psx.com.pk) | Stock symbols, EOD prices |
-| SCS Trade | Dividend history |
-| Al-Meezan KMI PDFs | Purification ratios |
-| TradingView S3 | Stock logos |
+**`stocks/views.py`** — DRF ViewSets for the stocks API. Provides endpoints to list all stocks, retrieve a single stock by symbol, and filter by sector.
 
----
+**`transactions/models.py`** — Defines the `Transaction` model which stores a user's buy/sell history — stock symbol, shares, price, and date. Portfolio calculations are derived from these records.
+
+**`transactions/views.py`** — API views for portfolio management: calculating current portfolio value and P&L by joining transaction history with live prices, calculating dividend income with tax deductions (15% for filers, 30% for non-filers), computing purification amounts per dividend event, and marking purifications as complete.
+
+**`transactions/tasks.py`** — Contains the `process_ex_date_notifications` task that checks each morning whether any stocks a user holds have an upcoming ex-date, triggering a notification.
+
+**`users/models.py`** — Custom user model extending Django's `AbstractBaseUser`. Adds `filer_status` (filer or non-filer) and `whatsapp_number` fields. I chose a custom user model rather than extending the default with a profile model because Django recommends this at the start of a project — changing it later requires database migrations that can be very disruptive.
+
+**`scraper.py`** — A standalone Python script used to do the initial bulk scrape of historical stock prices from `dps.psx.com.pk` using the `requests` library. This populated the database with approximately 340,000 daily price records covering years of historical data for all 285 Shariah-compliant stocks.
+
+**`dividend_scraper.py`** — A standalone script that scraped historical dividend data from SCS Trade, populating approximately 2,800 dividend events across all covered stocks.
+
+**`purification_parser.py`** — Parses the Al-Meezan KMI recomposition PDF reports to extract purification ratios for each stock. The PDFs are semi-annual and contain the ratio of non-compliant income for every stock in the index. This script extracts those ratios and inserts them into the database, linking each ratio to the correct stock and the date range it applies to.
+
+**`start.sh`** — Shell script used as the Railway start command. It runs Django migrations, starts Gunicorn as the WSGI server, and launches the Celery worker with beat scheduler using the `solo` pool. I chose the solo pool over the default prefork pool because Railway containers run as root, and Celery's prefork concurrency model has known issues with broken pipe errors in root-privileged containers.
+
+## Frontend
+
+The React frontend is built with Vite and styled with Tailwind CSS v4. It communicates with the backend exclusively via the REST API using Axios. An Axios interceptor automatically attaches the JWT access token to every request and handles token refresh on 401 responses — so users stay logged in across sessions without needing to re-authenticate.
+
+The frontend has six main pages: a public landing page, login and registration pages, and four protected pages (Dashboard, Portfolio, Dividends, Stocks, and Learn) wrapped in a `ProtectedRoute` component that checks authentication state before rendering.
+
+## Design Decisions
+
+**PostgreSQL over SQLite** — While SQLite would have been sufficient for development, I chose PostgreSQL for production because multiple users will be querying the same stock price data simultaneously. PostgreSQL handles concurrent reads and writes more reliably, and Railway provides managed PostgreSQL with automatic backups.
+
+**Celery over cron jobs** — I could have used a simple Linux cron job to run the scraper scripts. I chose Celery with django-celery-beat instead because it integrates with Django's ORM, stores the schedule in the database (making it configurable without code changes), and provides task result tracking and retry logic out of the box.
+
+**Decoupled architecture** — Separating the frontend from the backend adds deployment complexity but provides flexibility. The React app can be hosted on Vercel's CDN for fast global delivery, and the API can be versioned and extended independently. It also made the PWA implementation straightforward — the frontend is a standalone installable web app that works like a native mobile app on iOS and Android.
 
 ## Database
 
@@ -83,82 +68,12 @@ No spreadsheets. No manual calculations. Just add your transactions and Amanat h
 | Purification ratios | ~765 |
 | Stock logos | 283 |
 
----
+## Live Demo
 
-## API
-
-ull Swagger documentation available at:
-https://trustworthy-spontaneity-production-61c4.up.railway.app/api/docs/
-
-Key endpoints:
-POST /api/v1/auth/register/
-POST /api/v1/auth/login/
-GET  /api/v1/stocks/
-GET  /api/v1/stocks/{symbol}/
-GET  /api/v1/portfolio/value/
-GET  /api/v1/portfolio/dividends/
-POST /api/v1/portfolio/purification/mark/
+**App:** https://amanat-psx.vercel.app
+**API Docs:** https://trustworthy-spontaneity-production-61c4.up.railway.app/api/docs/
+**Backend Repo:** https://github.com/RoadtoFire/psx-api
 
 ---
 
-## Local Development
-
-### Backend
-```bash
-git clone https://github.com/RoadtoFire/psx-api
-cd psx-api
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env  # configure your environment
-python manage.py migrate
-python manage.py runserver
-```
-
-### Frontend
-```bash
-git clone https://github.com/RoadtoFire/psx-frontend
-cd psx-frontend
-npm install
-cp .env.example .env.local  # set VITE_API_URL
-npm run dev
-```
-
----
-
-## Automated Tasks (Celery)
-
-| Task | Schedule |
-|------|---------|
-| Update daily stock prices | Weekdays 4:30 PM PKT |
-| Update index prices | Weekdays 4:30 PM PKT |
-| Update dividend data | Weekdays 5:00 PM PKT |
-| Ex-date notifications | Weekdays 9:00 AM PKT |
-
----
-
-## Roadmap
-
-- [ ] PWA — installable on Android
-- [ ] Push notifications for ex-dates
-- [ ] WhatsApp alerts for upcoming dividends
-- [ ] Portfolio performance vs KMI index chart
-- [ ] React Native mobile app
-
----
-
-## Contributing
-
-Pull requests welcome. For major changes please open an issue first.
-
----
-
-## Disclaimer
-
-Amanat is a personal finance tool. It does not provide investment advice. Always do your own research before investing. Shariah compliance screening is based on PSX KMI All Shares Islamic Index — consult a qualified Islamic finance scholar for personal religious guidance.
-
----
 *"Amanat — because your wealth is a trust."*
-
-
-Full Swagger documentation available at:
