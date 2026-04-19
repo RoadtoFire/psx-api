@@ -5,11 +5,10 @@
 [![Backend](https://img.shields.io/badge/API-Railway-purple)](https://trustworthy-spontaneity-production-61c4.up.railway.app/api/docs/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
+#### Video Demo: (https://youtu.be/7kdBJh6AwE4)
+#### Description:
+Amanat is a free web app that automates Shariah-compliant portfolio tracking and dividend purification calculations for Pakistani Muslim investors on the Pakistan Stock Exchange. Built with Django REST Framework and React, it scrapes live PSX data, calculates dividend income with automatic tax deductions, and computes Islamic purification amounts using official Al-Meezan KMI recomposition ratios — eliminating the need for manual spreadsheet calculations.
 ---
-
-## What is Amanat?
-
-Amanat (امانت — Urdu for *trust* and *safekeeping*) is a free portfolio tracker built specifically for Pakistani Muslim investors who want to invest in the Pakistan Stock Exchange while staying Shariah compliant.
 
 No spreadsheets. No manual calculations. Just add your transactions and Amanat handles everything.
 
@@ -159,11 +158,6 @@ Pull requests welcome. For major changes please open an issue first.
 Amanat is a personal finance tool. It does not provide investment advice. Always do your own research before investing. Shariah compliance screening is based on PSX KMI All Shares Islamic Index — consult a qualified Islamic finance scholar for personal religious guidance.
 
 ---
-
-## Author
-
-Built by **Jawwad Ahmed** as a CS50 final project.
-
 *"Amanat — because your wealth is a trust."*
 
 
