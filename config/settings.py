@@ -1,3 +1,7 @@
+# AI tools (Claude/ChatGPT) were used to assist with boilerplate
+# and code generation throughout this project.
+
+
 from decouple import config
 from datetime import timedelta
 from stocks.schedules import CELERYBEAT_SCHEDULE
