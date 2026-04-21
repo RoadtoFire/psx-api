@@ -163,8 +163,15 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS
-CORS_ALLOW_ALL_ORIGINS = DEBUG
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='', cast=Csv())
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Or specifically allow your frontend (production):
+CORS_ALLOWED_ORIGINS = [
+    "https://www.amanat-psx.com",
+]
+
+
 
 # Redis
 CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379/0')
