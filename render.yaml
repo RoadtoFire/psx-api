@@ -2,7 +2,6 @@ services:
   - type: web
     name: psx-api
     runtime: python
-    pythonVersion: "3.13.2"
     buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
     preDeployCommand: python manage.py migrate
     startCommand: gunicorn config.wsgi --bind 0.0.0.0:$PORT
@@ -25,7 +24,6 @@ services:
   - type: worker
     name: psx-celery
     runtime: python
-    pythonVersion: "3.13.2"
     buildCommand: pip install -r requirements.txt
     startCommand: celery -A config worker --beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     envVars:
