@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from stocks.cron_views import run_update_prices, run_update_dividends, run_process_notifications
 
 
 urlpatterns = [
@@ -13,5 +14,7 @@ urlpatterns = [
     path('api/v1/', include('transactions.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-
+    path('api/cron/update-prices/', run_update_prices, name='cron-update-prices'),
+    path('api/cron/update-dividends/', run_update_dividends, name='cron-update-dividends'),
+    path('api/cron/process-notifications/', run_process_notifications, name='cron-process-notifications'),
 ]

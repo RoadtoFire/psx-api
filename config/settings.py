@@ -2,10 +2,8 @@
 # and code generation throughout this project.
 
 
-from decouple import config
-from datetime import timedelta
-from stocks.schedules import CELERYBEAT_SCHEDULE
 from decouple import config, Csv
+from datetime import timedelta
 import dj_database_url
 
 """
@@ -41,7 +39,6 @@ INSTALLED_APPS = [
     'transactions',
     'users',
     'stocks',
-    'django_celery_beat',
     'drf_spectacular',
     'rest_framework_simplejwt',
     'django.contrib.admin',
@@ -150,10 +147,7 @@ SIMPLE_JWT = {
 }
 
 
-CELERY_TIMEZONE = 'Asia/Karachi'
-CELERY_BEAT_SCHEDULE = CELERYBEAT_SCHEDULE
-
-
+CRON_SECRET = config('CRON_SECRET', default='dev-cron-secret')
 
 # Static files
 STATIC_URL = '/static/'
@@ -168,10 +162,6 @@ CORS_ALLOWED_ORIGINS = config(
 )
 
 
-
-# Redis
-CELERY_BROKER_URL = config('REDIS_URL', default='redis://localhost:6379/0')
-CELERY_RESULT_BACKEND = config('REDIS_URL', default='redis://localhost:6379/0')
 
 # Security for production
 if not DEBUG:
