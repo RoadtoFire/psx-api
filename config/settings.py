@@ -150,8 +150,6 @@ SIMPLE_JWT = {
 }
 
 
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_TIMEZONE = 'Asia/Karachi'
 CELERY_BEAT_SCHEDULE = CELERYBEAT_SCHEDULE
 
@@ -163,13 +161,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-# Or specifically allow your frontend (production):
-CORS_ALLOWED_ORIGINS = [
-    "https://www.amanat-psx.com",
-]
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='http://localhost:5173',
+    cast=Csv()
+)
 
 
 
