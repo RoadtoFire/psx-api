@@ -40,7 +40,7 @@ class StockListSerializer(serializers.ModelSerializer):
 
 class StockDetailSerializer(serializers.ModelSerializer):
     """Full serializer for single stock detail"""
-    latest_price = serializers.SerializerMethodField()
+    latest_price_detail = serializers.SerializerMethodField()
     recent_dividends = serializers.SerializerMethodField()
     current_purification = serializers.SerializerMethodField()
 
@@ -48,10 +48,10 @@ class StockDetailSerializer(serializers.ModelSerializer):
         model = Stock
         fields = [
             'symbol', 'name', 'sector',
-            'latest_price', 'recent_dividends', 'current_purification'
+            'latest_price_detail', 'recent_dividends', 'current_purification'
         ]
 
-    def get_latest_price(self, obj):
+    def get_latest_price_detail(self, obj):
         price = obj.prices.first()
         if not price:
             return None
