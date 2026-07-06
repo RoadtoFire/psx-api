@@ -3,6 +3,18 @@ from rest_framework.response import Response
 from .serializers import RegisterSerializer, UserSerializer
 from .models import User
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class CaseInsensitiveTokenSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        attrs[self.username_field] = attrs[self.username_field].lower()
+        return super().validate(attrs)
+
+
+class EmailLoginView(TokenObtainPairView):
+    serializer_class = CaseInsensitiveTokenSerializer
 
 
 class RegisterView(generics.CreateAPIView):

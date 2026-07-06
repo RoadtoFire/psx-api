@@ -1,14 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from stocks.cron_views import run_update_prices, run_update_dividends, run_process_notifications
+from users.views import EmailLoginView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('stocks.urls')),
-    path('api/v1/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/v1/auth/login/', EmailLoginView.as_view(), name='token_obtain_pair'),
     path('api/v1/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/v1/auth/', include('users.urls')),
     path('api/v1/', include('transactions.urls')),
