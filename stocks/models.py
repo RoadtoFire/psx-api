@@ -105,11 +105,87 @@ class PurificationRatio(models.Model):
         return f"{self.stock.symbol} - {self.period} - {ratio_display}"
 
 
+class MacroConfig(models.Model):
+    """Single-row table. Access via MacroConfig.get()."""
+    kse100_forward_pe = models.FloatField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(
+        'users.User', null=True, blank=True, on_delete=models.SET_NULL
+    )
+
+    class Meta:
+        verbose_name_plural = "Macro Config"
+
+    @classmethod
+    def get(cls):
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+    def __str__(self):
+        return f"KSE-100 Forward PE: {self.kse100_forward_pe}"
+
+
+class MacroSnapshot(models.Model):
+    """Daily global macro snapshot — KIBOR, PKR/USD, ERP signal."""
+    ERP_CHOICES = [('GREEN', 'Green'), ('YELLOW', 'Yellow'), ('RED', 'Red')]
+
+    date = models.DateField(unique=True, db_index=True)
+    kibor_6m = models.FloatField(null=True, blank=True)
+    kibor_1y = models.FloatField(null=True, blank=True)
+    pkr_usd_rate = models.FloatField(null=True, blank=True)
+    kse100_forward_pe = models.FloatField(null=True, blank=True)
+    kse100_earnings_yield = models.FloatField(null=True, blank=True)
+    market_erp = models.FloatField(null=True, blank=True)
+    erp_signal = models.CharField(max_length=10, null=True, blank=True, choices=ERP_CHOICES)
+    source = models.CharField(max_length=30, default='sbp_website')
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date']
+        verbose_name_plural = "Macro Snapshots"
+
+    def __str__(self):
+        return f"Macro {self.date} | KIBOR={self.kibor_6m}% | ERP={self.erp_signal}"
+
+
+class MacroWarning(models.Model):
+    """Daily global macro warning signals — reserves, oil, real rate."""
+    SIGNAL_CHOICES = [
+        ('GREEN', 'Green'), ('YELLOW', 'Yellow'), ('RED', 'Red'), ('UNKNOWN', 'Unknown')
+    ]
+    COMPOSITE_CHOICES = [
+        ('CALM', 'Calm'), ('WATCH', 'Watch'),
+        ('STRESSED', 'Stressed'), ('PEAK_STRESS', 'Peak Stress'),
+    ]
+
+    date = models.DateField(unique=True, db_index=True)
+    sbp_fx_reserves_usd_bn = models.FloatField(null=True, blank=True)
+    monthly_imports_usd_bn = models.FloatField(null=True, blank=True)
+    import_cover_months = models.FloatField(null=True, blank=True)
+    reserves_signal = models.CharField(max_length=10, default='UNKNOWN', choices=SIGNAL_CHOICES)
+    brent_crude_usd = models.FloatField(null=True, blank=True)
+    oil_signal = models.CharField(max_length=10, default='UNKNOWN', choices=SIGNAL_CHOICES)
+    cpi_yoy = models.FloatField(null=True, blank=True)
+    real_rate = models.FloatField(null=True, blank=True)
+    real_rate_signal = models.CharField(max_length=10, default='UNKNOWN', choices=SIGNAL_CHOICES)
+    macro_stress_score = models.IntegerField(default=0)
+    composite_signal = models.CharField(max_length=15, default='CALM', choices=COMPOSITE_CHOICES)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date']
+        verbose_name_plural = "Macro Warnings"
+
+    def __str__(self):
+        return f"Macro Warning {self.date} | {self.composite_signal}"
+
+
 class CronLog(models.Model):
     JOB_CHOICES = [
         ('update_prices', 'Price Update'),
         ('update_dividends', 'Dividend Update'),
         ('process_notifications', 'Notifications'),
+        ('update_macro', 'Macro Update'),
     ]
     name = models.CharField(max_length=30, choices=JOB_CHOICES, db_index=True)
     ran_at = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Stock, DailyPrice, Dividend, PurificationRatio, CronLog
+from .models import Stock, DailyPrice, Dividend, PurificationRatio, CronLog, MacroSnapshot, MacroWarning
 
 
 class DailyPriceSerializer(serializers.ModelSerializer):
@@ -77,3 +77,25 @@ class CronLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = CronLog
         fields = ['id', 'name', 'ran_at', 'success', 'output', 'duration_seconds']
+
+
+class MacroSnapshotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MacroSnapshot
+        fields = [
+            'date', 'kibor_6m', 'kibor_1y', 'pkr_usd_rate',
+            'kse100_forward_pe', 'kse100_earnings_yield',
+            'market_erp', 'erp_signal', 'updated_at',
+        ]
+
+
+class MacroWarningSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MacroWarning
+        fields = [
+            'date', 'sbp_fx_reserves_usd_bn', 'monthly_imports_usd_bn',
+            'import_cover_months', 'reserves_signal',
+            'brent_crude_usd', 'oil_signal',
+            'cpi_yoy', 'real_rate', 'real_rate_signal',
+            'macro_stress_score', 'composite_signal', 'updated_at',
+        ]
