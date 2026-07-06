@@ -1,10 +1,10 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Stock, DailyPrice, Index, IndexDailyPrice
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from .models import Stock, DailyPrice, Index, IndexDailyPrice, CronLog
 from .serializers import (
-    StockListSerializer, StockDetailSerializer, DailyPriceSerializer
+    StockListSerializer, StockDetailSerializer, DailyPriceSerializer, CronLogSerializer
 )
 
 class StockViewSet(viewsets.ReadOnlyModelViewSet):
@@ -50,3 +50,12 @@ class DailyPriceViewSet(viewsets.ReadOnlyModelViewSet):
         return DailyPrice.objects.filter(
             stock__symbol=self.kwargs["stock_symbol"]
         )
+
+
+class CronLogListView(generics.ListAPIView):
+    serializer_class = CronLogSerializer
+    permission_classes = [IsAdminUser]
+    pagination_class = None
+
+    def get_queryset(self):
+        return CronLog.objects.all()[:30]

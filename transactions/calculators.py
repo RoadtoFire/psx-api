@@ -1,5 +1,5 @@
 from decimal import Decimal
-from stocks.models import Dividend, PurificationRatio
+from stocks.models import Dividend, DailyPrice, PurificationRatio
 
 
 def get_holdings_on_date(portfolio, date):
@@ -46,7 +46,7 @@ def calculate_dividend_income(portfolio, tax_rate):
     held_stocks = portfolio.transactions.values_list('stock', flat=True).distinct()
     dividends = Dividend.objects.filter(
         stock__in=held_stocks,
-        dividend_type__in=['cash', 'mixed']
+        dividend_type__in=['cash', 'bonus', 'mixed']
     ).order_by('-ex_date')
 
     for dividend in dividends:
@@ -57,29 +57,62 @@ def calculate_dividend_income(portfolio, tax_rate):
         if shares_held <= 0:
             continue
 
-        # Calculate amounts
-        gross = shares_held * dividend.cash_amount
+        # Calculate amounts (pure-bonus dividends have cash_amount=None)
+        gross = shares_held * dividend.cash_amount if dividend.cash_amount else Decimal('0')
         tax = gross * Decimal(str(tax_rate))
         net = gross - tax
 
-        # Purification
+        # Purification rate applicable to this stock/date (shared by cash and bonus components)
         purification_rate = get_purification_rate(dividend.stock, dividend.ex_date)
         if purification_rate:
-            purification_amount = gross * (Decimal(str(purification_rate)) / 100)
+            cash_purification = gross * (Decimal(str(purification_rate)) / 100)
         else:
-            purification_amount = Decimal('0')
+            cash_purification = Decimal('0')
+
+        # Bonus shares purification.
+        #
+        # Some Islamic finance methodologies treat bonus shares as a distribution
+        # of the company's retained earnings (which may include non-compliant
+        # income) paid in shares instead of cash. To purify that component, we
+        # value the bonus shares at the stock's market closing price on (or
+        # nearest before) the ex_date, then apply the same purification ratio
+        # used for the cash dividend. No tax is applied to this amount: the
+        # `tax_rate` parameter and the existing tax convention in this codebase
+        # only pertain to cash dividend income, not to share distributions.
+        bonus_shares_received = None
+        bonus_value = Decimal('0')
+        bonus_purification = Decimal('0')
+
+        if dividend.bonus_ratio is not None:
+            bonus_shares_received = shares_held * dividend.bonus_ratio
+
+            price_record = DailyPrice.objects.filter(
+                stock=dividend.stock,
+                date__lte=dividend.ex_date
+            ).order_by('-date').first()
+
+            if price_record:
+                bonus_value = bonus_shares_received * price_record.close
+
+            if purification_rate:
+                bonus_purification = bonus_value * (Decimal(str(purification_rate)) / 100)
+
+        purification_amount = cash_purification + bonus_purification
 
         results.append({
             'stock': dividend.stock.symbol,
             'stock_name': dividend.stock.name,
             'ex_date': str(dividend.ex_date),
             'shares_held': float(shares_held),
-            'cash_amount_per_share': float(dividend.cash_amount),
+            'cash_amount_per_share': float(dividend.cash_amount) if dividend.cash_amount else None,
             'gross_dividend': round(float(gross), 2),
             'tax_deducted': round(float(tax), 2),
             'net_dividend': round(float(net), 2),
             'purification_rate': float(purification_rate) if purification_rate else None,
             'purification_amount': round(float(purification_amount), 2),
+            'bonus_shares_received': float(bonus_shares_received) if bonus_shares_received is not None else None,
+            'bonus_value': round(float(bonus_value), 2),
+            'bonus_ratio': float(dividend.bonus_ratio) if dividend.bonus_ratio is not None else None,
             'final_amount': round(float(net - purification_amount), 2),
         })
 

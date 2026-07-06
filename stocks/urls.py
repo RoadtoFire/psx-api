@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import StockViewSet, DailyPriceViewSet
+from .views import StockViewSet, DailyPriceViewSet, CronLogListView
 
 router = DefaultRouter()
 router.register(r'stocks', StockViewSet, basename='stock')
@@ -12,4 +12,5 @@ urlpatterns = [
         DailyPriceViewSet.as_view({'get': 'list'}),
         name='stock-prices'
     ),
+    path('admin/cron-logs/', CronLogListView.as_view(), name='cron-logs'),
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Stock, DailyPrice, Dividend, PurificationRatio
+from .models import Stock, DailyPrice, Dividend, PurificationRatio, CronLog
 
 
 class DailyPriceSerializer(serializers.ModelSerializer):
@@ -71,3 +71,9 @@ class StockDetailSerializer(serializers.ModelSerializer):
         if not ratio:
             return None
         return PurificationRatioSerializer(ratio).data
+
+
+class CronLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CronLog
+        fields = ['id', 'name', 'ran_at', 'success', 'output', 'duration_seconds']

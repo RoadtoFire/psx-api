@@ -149,6 +149,19 @@ SIMPLE_JWT = {
 
 CRON_SECRET = config('CRON_SECRET', default='dev-cron-secret')
 
+# Twilio WhatsApp notifications — optional. Left blank, sends are skipped (no crash).
+TWILIO_ACCOUNT_SID = config('TWILIO_ACCOUNT_SID', default='')
+TWILIO_AUTH_TOKEN = config('TWILIO_AUTH_TOKEN', default='')
+TWILIO_WHATSAPP_FROM = config('TWILIO_WHATSAPP_FROM', default='')
+
+# Google OAuth — set GOOGLE_CLIENT_ID in .env to enable "Continue with Google".
+GOOGLE_CLIENT_ID = config('GOOGLE_CLIENT_ID', default='')
+
+# Password reset emails via Resend (resend.com).
+RESEND_API_KEY = config('RESEND_API_KEY', default='')
+RESEND_FROM_EMAIL = config('RESEND_FROM_EMAIL', default='onboarding@resend.dev')
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173')
+
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'

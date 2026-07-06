@@ -103,3 +103,25 @@ class PurificationRatio(models.Model):
     def __str__(self):
         ratio_display = f"{self.ratio}%" if self.ratio else "N/A (Islamic)"
         return f"{self.stock.symbol} - {self.period} - {ratio_display}"
+
+
+class CronLog(models.Model):
+    JOB_CHOICES = [
+        ('update_prices', 'Price Update'),
+        ('update_dividends', 'Dividend Update'),
+        ('process_notifications', 'Notifications'),
+    ]
+    name = models.CharField(max_length=30, choices=JOB_CHOICES, db_index=True)
+    ran_at = models.DateTimeField(auto_now_add=True)
+    success = models.BooleanField(default=True)
+    output = models.TextField(blank=True)
+    duration_seconds = models.FloatField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-ran_at']
+        get_latest_by = 'ran_at'
+        verbose_name_plural = "Cron Logs"
+
+    def __str__(self):
+        status = "OK" if self.success else "FAILED"
+        return f"{self.name} [{status}] @ {self.ran_at:%Y-%m-%d %H:%M}"

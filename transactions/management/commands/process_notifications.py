@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from stocks.models import Dividend
 from transactions.models import Portfolio
 from transactions.calculators import get_holdings_on_date, get_purification_rate
+from transactions.notifications import send_whatsapp_message
 
 
 class Command(BaseCommand):
@@ -54,6 +55,16 @@ class Command(BaseCommand):
                     f'Gross: Rs.{gross:.2f}, After tax: Rs.{net:.2f}, '
                     f'Pay Rs.{purification_amount:.2f} in charity. Net: Rs.{final:.2f}'
                 )
+
+                if user.whatsapp_number:
+                    message_body = (
+                        f'Amanat: {dividend.stock.symbol} dividend ex-date is today.\n'
+                        f'Gross dividend: Rs.{gross:.2f}\n'
+                        f'After tax deduction: Rs.{net:.2f}\n'
+                        f'Purification amount owed in charity: Rs.{purification_amount:.2f}'
+                    )
+                    send_whatsapp_message(user.whatsapp_number, message_body)
+
                 notifications += 1
 
         self.stdout.write(f'Processed {notifications} notifications for {todays_dividends.count()} ex-dates')
