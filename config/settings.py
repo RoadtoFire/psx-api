@@ -162,6 +162,10 @@ RESEND_API_KEY = config('RESEND_API_KEY', default='')
 RESEND_FROM_EMAIL = config('RESEND_FROM_EMAIL', default='onboarding@resend.dev')
 FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173')
 
+# Gemini Flash — used for CSV/Excel column mapping and screenshot OCR in bulk import.
+# Free API key: https://aistudio.google.com (no credit card needed, 1,500 req/day free)
+GEMINI_API_KEY = config('GEMINI_API_KEY', default='')
+
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'

@@ -1,9 +1,12 @@
+from django.conf import settings
 from rest_framework import generics, permissions, status
+from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import Portfolio, Transaction, PurificationRecord
 from .serializers import PortfolioSerializer, TransactionSerializer
 from .calculators import calculate_dividend_income, calculate_portfolio_value
-from rest_framework.views import APIView
+from .importers import parse_import_file
 
 
 
@@ -140,3 +143,99 @@ class PurificationHistoryView(APIView):
                 for r in records
             ]
         })
+
+
+class TransactionImportView(APIView):
+    """
+    POST /api/v1/portfolio/transactions/import/
+    Accepts a multipart file upload (.csv / .xlsx / .png / .jpg / .jpeg).
+    Returns a preview of parsed rows without saving anything.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = [MultiPartParser]
+
+    def post(self, request):
+        file = request.FILES.get('file')
+        if not file:
+            return Response({'error': 'No file uploaded.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        file_bytes = file.read()
+        filename = file.name or 'upload'
+        api_key = getattr(settings, 'GEMINI_API_KEY', '')
+
+        raw_rows, error = parse_import_file(file_bytes, filename, api_key)
+        if error:
+            return Response({'error': error}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        if not raw_rows:
+            return Response(
+                {'parsed': [], 'skipped': [], 'message': 'No transaction rows found in the file.'},
+                status=status.HTTP_200_OK,
+            )
+
+        parsed = []
+        skipped = []
+
+        for i, row in enumerate(raw_rows):
+            ser = TransactionSerializer(data=row)
+            if ser.is_valid():
+                # Return the validated display values (don't save yet)
+                vd = ser.validated_data
+                parsed.append({
+                    'stock_symbol':     vd['stock_symbol'].symbol,
+                    'date':             str(vd['date']),
+                    'transaction_type': vd['transaction_type'],
+                    'shares':           str(vd['shares']),
+                    'price_per_share':  str(vd['price_per_share']),
+                })
+            else:
+                skipped.append({
+                    'row':    i + 1,
+                    'data':   row,
+                    'reason': '; '.join(
+                        f"{f}: {', '.join(e)}" for f, e in ser.errors.items()
+                    ),
+                })
+
+        return Response({'parsed': parsed, 'skipped': skipped})
+
+
+class TransactionBulkConfirmView(APIView):
+    """
+    POST /api/v1/portfolio/transactions/import/confirm/
+    Body: { "transactions": [{stock_symbol, date, transaction_type, shares, price_per_share}, ...] }
+    Validates and bulk-creates the confirmed rows for the authenticated user's portfolio.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        rows = request.data.get('transactions', [])
+        if not isinstance(rows, list) or not rows:
+            return Response(
+                {'error': 'transactions must be a non-empty list.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        portfolio, _ = Portfolio.objects.get_or_create(
+            user=request.user,
+            defaults={'name': 'My Portfolio'},
+        )
+
+        created = 0
+        failed = []
+
+        for i, row in enumerate(rows):
+            ser = TransactionSerializer(data=row)
+            if ser.is_valid():
+                ser.save(portfolio=portfolio)
+                created += 1
+            else:
+                failed.append({
+                    'row':    i + 1,
+                    'data':   row,
+                    'reason': '; '.join(
+                        f"{f}: {', '.join(e)}" for f, e in ser.errors.items()
+                    ),
+                })
+
+        return Response({'created': created, 'failed': failed})
