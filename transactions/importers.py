@@ -332,12 +332,17 @@ def run_cashbook_normalizer(rows: list[list[str]]) -> list[dict]:
         if not date:
             continue
 
+        try:
+            price = str(round(float(m.group(4)), 2))
+        except ValueError:
+            price = m.group(4)
+
         results.append({
             "stock_symbol":     m.group(1).upper(),
             "date":             date,
             "transaction_type": m.group(2).lower(),
             "shares":           m.group(3),
-            "price_per_share":  m.group(4),
+            "price_per_share":  price,
         })
     return results
 
