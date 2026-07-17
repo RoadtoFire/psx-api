@@ -177,8 +177,16 @@ def read_xlsx(file_bytes: bytes) -> list[list[str]]:
     return rows
 
 
+_DATE_LINE = re.compile(r'^(\d{1,2}/\d{1,2}/\d{4})\s+(.*)')
+
+
 def read_pdf(file_bytes: bytes) -> list[list[str]]:
-    """Extract table rows from a PDF using pdfplumber. Returns a flat list of rows."""
+    """
+    Extract rows from a PDF using pdfplumber.
+    First tries table extraction (works when the PDF has visible grid lines).
+    Falls back to text-line extraction for PDFs with positioned text but no borders
+    (e.g. Finqalab Cash Book Reports), returning [date, rest_of_line] pairs.
+    """
     import pdfplumber
     rows = []
     with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
@@ -187,6 +195,25 @@ def read_pdf(file_bytes: bytes) -> list[list[str]]:
             if table:
                 for row in table:
                     rows.append([str(c).strip() if c else "" for c in row])
+
+    if rows:
+        return rows
+
+    # No table borders found — extract raw text and split into lines
+    with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text()
+            if not text:
+                continue
+            for line in text.split('\n'):
+                line = line.strip()
+                if not line:
+                    continue
+                m = _DATE_LINE.match(line)
+                if m:
+                    rows.append([m.group(1), m.group(2)])
+                else:
+                    rows.append(['', line])
     return rows
 
 
@@ -376,7 +403,7 @@ def parse_import_file(
             return [], "Could not read this PDF. Make sure it is not password-protected."
 
         if not rows_raw:
-            return [], "No table data found in this PDF. It may be a scanned image — try uploading it as a JPG/PNG instead."
+            return [], "No text could be extracted from this PDF. If it is a scanned document, try uploading a JPG/PNG screenshot instead."
 
         # Try cash book format first (Finqalab / similar brokers)
         if _detect_cashbook_format(rows_raw):
