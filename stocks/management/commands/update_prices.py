@@ -1,6 +1,8 @@
+import io
 import time
+import traceback
 from django.core.management.base import BaseCommand
-from stocks.models import Stock, DailyPrice, Index, IndexDailyPrice
+from stocks.models import Stock, DailyPrice, Index, IndexDailyPrice, CronLog
 from scraper import fetch_eod_prices, parse_eod_row
 
 
@@ -8,6 +10,25 @@ class Command(BaseCommand):
     help = 'Fetch and save latest EOD prices for all active stocks and indices'
 
     def handle(self, *args, **options):
+        import time as _time
+        out = io.StringIO()
+        start = _time.time()
+        success = True
+        try:
+            self._run(out)
+        except Exception:
+            out.write(traceback.format_exc())
+            success = False
+        finally:
+            CronLog.objects.create(
+                name='update_prices',
+                success=success,
+                output=out.getvalue()[:5000],
+                duration_seconds=round(_time.time() - start, 2),
+            )
+        self.stdout.write(out.getvalue())
+
+    def _run(self, out):
         updated = 0
         skipped = 0
 
@@ -32,7 +53,7 @@ class Command(BaseCommand):
             updated += 1
             time.sleep(0.2)
 
-        self.stdout.write(f'Stocks: updated={updated}, skipped={skipped}')
+        out.write(f'Stocks: updated={updated}, skipped={skipped}\n')
 
         for index in Index.objects.all():
             rows = fetch_eod_prices(index.symbol)
@@ -52,4 +73,4 @@ class Command(BaseCommand):
 
             IndexDailyPrice.objects.bulk_create(prices_to_create, ignore_conflicts=True)
 
-        self.stdout.write('Index prices updated')
+        out.write('Index prices updated\n')

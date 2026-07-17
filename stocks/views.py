@@ -69,8 +69,16 @@ class CronLogListView(generics.ListAPIView):
     permission_classes = [IsAdminUser]
     pagination_class = None
 
-    def get_queryset(self):
-        return CronLog.objects.all()[:30]
+    def list(self, request, *args, **kwargs):
+        # Fetch the latest 10 runs per job so all 4 jobs always appear,
+        # regardless of how many times one job dominates the global log.
+        job_names = [choice[0] for choice in CronLog.JOB_CHOICES]
+        logs = []
+        for name in job_names:
+            logs.extend(CronLog.objects.filter(name=name).order_by('-ran_at')[:10])
+        logs.sort(key=lambda x: x.ran_at, reverse=True)
+        serializer = self.get_serializer(logs, many=True)
+        return Response(serializer.data)
 
 
 class MacroView(APIView):

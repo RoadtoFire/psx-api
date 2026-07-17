@@ -1,6 +1,8 @@
+import io
 import time
+import traceback
 from django.core.management.base import BaseCommand
-from stocks.models import Stock, Dividend
+from stocks.models import Stock, Dividend, CronLog
 from dividend_scraper import fetch_dividends, parse_dividend
 
 
@@ -8,6 +10,25 @@ class Command(BaseCommand):
     help = 'Check for newly announced dividends'
 
     def handle(self, *args, **options):
+        import time as _time
+        out = io.StringIO()
+        start = _time.time()
+        success = True
+        try:
+            self._run(out)
+        except Exception:
+            out.write(traceback.format_exc())
+            success = False
+        finally:
+            CronLog.objects.create(
+                name='update_dividends',
+                success=success,
+                output=out.getvalue()[:5000],
+                duration_seconds=round(_time.time() - start, 2),
+            )
+        self.stdout.write(out.getvalue())
+
+    def _run(self, out):
         new_dividends = 0
 
         for stock in Stock.objects.filter(is_active=True):
@@ -45,4 +66,4 @@ class Command(BaseCommand):
 
             time.sleep(0.2)
 
-        self.stdout.write(f'New dividends found: {new_dividends}')
+        out.write(f'New dividends found: {new_dividends}\n')
