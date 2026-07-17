@@ -177,6 +177,19 @@ def read_xlsx(file_bytes: bytes) -> list[list[str]]:
     return rows
 
 
+def read_pdf(file_bytes: bytes) -> list[list[str]]:
+    """Extract table rows from a PDF using pdfplumber. Returns a flat list of rows."""
+    import pdfplumber
+    rows = []
+    with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+        for page in pdf.pages:
+            table = page.extract_table()
+            if table:
+                for row in table:
+                    rows.append([str(c).strip() if c else "" for c in row])
+    return rows
+
+
 def rows_to_text(rows: list[list[str]]) -> str:
     return "\n".join(",".join(row) for row in rows[:500])
 
@@ -253,10 +266,61 @@ def _normalise_gemini_row(row: dict) -> dict:
 
 # ── Main entry point ──────────────────────────────────────────────────────────
 
-SUPPORTED_EXTENSIONS = {".csv", ".xlsx", ".png", ".jpg", ".jpeg"}
+SUPPORTED_EXTENSIONS = {".csv", ".xlsx", ".pdf", ".png", ".jpg", ".jpeg"}
 IMAGE_MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}
-MAX_CSV_BYTES   = 2 * 1024 * 1024   # 2 MB
+MAX_CSV_BYTES   = 5 * 1024 * 1024   # 5 MB
 MAX_IMAGE_BYTES = 4 * 1024 * 1024   # 4 MB
+
+# Matches descriptions like:
+#   "EFERT BUY 9 @ 219.5000, BRK = ..."
+#   "FATIMA SELL 71 @ 131.9800, BRK = ..."
+_CASHBOOK_TX = re.compile(
+    r'^([A-Z]{2,10})\s+(BUY|SELL)\s+([\d]+(?:\.\d+)?)\s+@\s+([\d.]+)',
+    re.IGNORECASE,
+)
+
+
+def run_cashbook_normalizer(rows: list[list[str]]) -> list[dict]:
+    """
+    Parse broker Cash Book Report format (Finqalab / similar):
+    Columns: Settlement Date | Description | Amount | Balance
+
+    Transaction rows embed the data in Description:
+      "EFERT BUY 9 @ 219.5000, BRK = 4.94, CVT = .00, WHT = .00, FED = .74"
+
+    Non-transaction rows (margin entries, payments, charges) are silently skipped.
+    """
+    results = []
+    for row in rows:
+        if len(row) < 2:
+            continue
+        date_str = row[0].strip()
+        desc     = row[1].strip()
+
+        m = _CASHBOOK_TX.match(desc)
+        if not m:
+            continue
+
+        date = _normalize_date(date_str)
+        if not date:
+            continue
+
+        results.append({
+            "stock_symbol":     m.group(1).upper(),
+            "date":             date,
+            "transaction_type": m.group(2).lower(),
+            "shares":           m.group(3),
+            "price_per_share":  m.group(4),
+        })
+    return results
+
+
+def _detect_cashbook_format(rows: list[list[str]]) -> bool:
+    """Return True if the rows look like a Cash Book Report (Description-embedded format)."""
+    for row in rows[:30]:
+        if len(row) >= 2 and _CASHBOOK_TX.match(row[1].strip()):
+            return True
+    return False
 
 
 def parse_import_file(
@@ -279,12 +343,12 @@ def parse_import_file(
     ext = os.path.splitext(filename.lower())[1]
 
     if ext not in SUPPORTED_EXTENSIONS:
-        return [], f"Unsupported file type '{ext}'. Allowed: .csv, .xlsx, .png, .jpg, .jpeg"
+        return [], f"Unsupported file type '{ext}'. Allowed: .csv, .xlsx, .pdf, .png, .jpg, .jpeg"
 
     if not file_bytes:
         return [], "The uploaded file is empty."
 
-    # ── Image path: always use Gemini vision ──────────────────────────────────
+    # ── Image path: always use Gemini vision ─────────────────────────────────
     if ext in IMAGE_MIME:
         if len(file_bytes) > MAX_IMAGE_BYTES:
             return [], "Image file too large. Maximum size is 4 MB."
@@ -301,9 +365,50 @@ def parse_import_file(
             logger.exception("Gemini image parse failed for %s", filename)
             return [], "AI could not read this image. Try exporting a CSV from your broker instead."
 
-    # ── CSV/Excel path ────────────────────────────────────────────────────────
+    # ── PDF path ──────────────────────────────────────────────────────────────
+    if ext == ".pdf":
+        if len(file_bytes) > MAX_CSV_BYTES:
+            return [], "PDF file too large. Maximum size is 5 MB."
+        try:
+            rows_raw = read_pdf(file_bytes)
+        except Exception:
+            logger.exception("Failed to read PDF %s", filename)
+            return [], "Could not read this PDF. Make sure it is not password-protected."
+
+        if not rows_raw:
+            return [], "No table data found in this PDF. It may be a scanned image — try uploading it as a JPG/PNG instead."
+
+        # Try cash book format first (Finqalab / similar brokers)
+        if _detect_cashbook_format(rows_raw):
+            logger.info("Cash Book format detected for %s", filename)
+            results = run_cashbook_normalizer(rows_raw)
+            if results:
+                return results, None
+
+        # Try standard normalizer (column-header mapping)
+        normalizer_rows, mapped_cols = run_normalizer(rows_raw)
+        if mapped_cols >= 3:
+            logger.info("Normalizer succeeded for PDF %s (%d cols mapped)", filename, mapped_cols)
+            return normalizer_rows, None
+
+        # Fall back to Gemini with the raw text
+        if not api_key:
+            return [], (
+                "Could not detect the column format in this PDF. "
+                "Set GEMINI_API_KEY in your .env for automatic detection."
+            )
+
+        logger.info("Falling back to Gemini for PDF %s", filename)
+        try:
+            raw = parse_with_gemini_text(rows_to_text(rows_raw), api_key)
+            return [_normalise_gemini_row(r) for r in raw], None
+        except Exception:
+            logger.exception("Gemini text parse failed for PDF %s", filename)
+            return [], "AI could not parse this PDF. Try exporting a CSV from your broker instead."
+
+    # ── CSV / Excel path ──────────────────────────────────────────────────────
     if len(file_bytes) > MAX_CSV_BYTES:
-        return [], "File too large. Maximum size is 2 MB for CSV/Excel files."
+        return [], "File too large. Maximum size is 5 MB for CSV/Excel files."
 
     try:
         if ext == ".csv":
