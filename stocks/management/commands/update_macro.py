@@ -146,15 +146,17 @@ def fetch_cpi(sess) -> Optional[float]:
 # ── Brent crude (yfinance) ────────────────────────────────────────────────────
 
 def fetch_brent() -> Optional[float]:
+    """Fetch crude oil price. Tries Brent (BZ=F) first, falls back to WTI (CL=F)."""
     try:
         import yfinance as yf
-        hist = yf.Ticker("BZ=F").history(period="2d")
-        if hist.empty:
-            logger.warning("Brent: yfinance returned empty history")
-            return None
-        price = round(float(hist["Close"].iloc[-1]), 2)
-        logger.info("Brent crude: $%.2f", price)
-        return price
+        for ticker in ("BZ=F", "CL=F"):
+            hist = yf.Ticker(ticker).history(period="5d")
+            if not hist.empty:
+                price = round(float(hist["Close"].iloc[-1]), 2)
+                logger.info("Crude oil (%s): $%.2f", ticker, price)
+                return price
+        logger.warning("Brent/WTI: all yfinance tickers returned empty history")
+        return None
     except Exception:
         logger.error("Brent scrape failed", exc_info=True)
         return None
