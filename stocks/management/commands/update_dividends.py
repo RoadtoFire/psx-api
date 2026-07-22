@@ -36,7 +36,7 @@ class Command(BaseCommand):
             if not entries:
                 continue
 
-            for entry in entries[:3]:
+            for entry in entries:
                 parsed = parse_dividend(stock.symbol, entry)
                 if not parsed['ex_date']:
                     continue
