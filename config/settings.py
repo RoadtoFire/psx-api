@@ -36,6 +36,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv(
 # Application definition
 
 INSTALLED_APPS = [
+    'blog',
     'transactions',
     'users',
     'stocks',

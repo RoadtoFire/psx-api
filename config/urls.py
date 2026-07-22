@@ -15,6 +15,7 @@ urlpatterns = [
     path('api/v1/', include('transactions.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/v1/', include('blog.urls')),
     path('api/cron/update-prices/', run_update_prices, name='cron-update-prices'),
     path('api/cron/update-dividends/', run_update_dividends, name='cron-update-dividends'),
     path('api/cron/process-notifications/', run_process_notifications, name='cron-process-notifications'),
